@@ -1,7 +1,7 @@
 #if PRIME_TWEEN_INSTALLED
 using PrimeTween;
 using UnityEngine;
-
+using Unity.Plastic.Newtonsoft.Json;
 namespace PrimeTweenDemo {
     public class Road : Animatable {
         [SerializeField] MeshRenderer roadModel;
