@@ -16,6 +16,7 @@
     "com.unity.timeline": "1.8.9",
     "com.unity.ugui": "2.0.0",
     "com.unity.visualscripting": "1.9.7",
+    "com.zbase.unityscreennavigator": "https://github.com/Zitga-Tech/ZBase.UnityScreenNavigator.git?path=/Packages/ZBase.UnityScreenNavigator",
     "org.nuget.system.runtime.compilerservices.unsafe": "6.1.2",
     "com.unity.modules.accessibility": "1.0.0",
     "com.unity.modules.ai": "1.0.0",
@@ -48,7 +49,8 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.littlebigfun.addressable-importer": "0.16.1"
   },
   "scopedRegistries": [
     {
@@ -58,6 +60,7 @@
         "com.cysharp.unitask",
         "com.cysharp.zstring",
         "com.faster-games.t4",
+        "com.littlebigfun.addressable-importer",
         "org.nuget.system.runtime.compilerservices.unsafe"
       ]
     }

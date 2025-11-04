@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4417499654757212264}
   - component: {fileID: 4417499654757212263}
   - component: {fileID: 6214852967863861345}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: ParentBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 2117708041180617421}
   - component: {fileID: 5395876010047791997}
   - component: {fileID: 7334357043710740439}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4417499654757212264}
   - component: {fileID: 4417499654757212263}
   - component: {fileID: 8659135393830352702}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: SplitBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4133644866296005443}
   - component: {fileID: 8048397524366788328}
   - component: {fileID: 3408517841517451419}
-  m_Layer: 8
+  m_Layer: 6
   m_Name: Text (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
