@@ -1,9 +1,10 @@
+using Runtime.Interface;
 using Runtime.Pool;
 using UnityEngine;
 
 namespace Runtime
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : MonoBehaviour, IBullet
     {
         [SerializeField] private Rigidbody2D rigid2D;
 
@@ -13,9 +14,11 @@ namespace Runtime
         
         private float _currentLifeTime;
         private Vector2 _startPosition;
+        private bool _isDespawn;
         
         public void Launch(string key, Vector2 velocity, float lifeTime, float maxDistance)
         {
+            _isDespawn = false;
             _key = key;
             _lifeTime = lifeTime;
             _maxDistance = maxDistance;
@@ -43,7 +46,21 @@ namespace Runtime
 
         private void DeSpawn()
         {
+            if (_isDespawn)
+                return;
+
+            _isDespawn = true;
             PoolService.Despawn(PoolType.Bullet, _key, gameObject);
+        }
+
+        public float GetDamage()
+        {
+            return 1;
+        }
+
+        public void Despawn()
+        {
+            DeSpawn();
         }
     }
 }

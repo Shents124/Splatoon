@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Runtime.ConfigData;
 using Runtime.Constant;
 using Runtime.Pool;
@@ -9,16 +8,12 @@ namespace Runtime.Manager
     public class WeaponManager : MonoBehaviour
     {
         [SerializeField] private Transform firePoint;
+        [SerializeField] private ShotgunAngleConfig shotgunAngleConfig;
         
         private WeaponConfig _weaponConfig;
 
         private float _fireInterval;
         private float _currentTimeFireInterval;
-
-        private readonly Dictionary<int, int> _angleShotgun = new()
-        {
-            { 3, 30 }, { 4, 90 }, { 5, 25 }, { 6, 100 }, { 7, 120 }
-        };
         
         public void Initialize(WeaponConfig weaponConfig)
         {
@@ -70,7 +65,7 @@ namespace Runtime.Manager
         {
             var aimDir = Vector2.up;
             var numberBullet = _weaponConfig.bulletPerShot;
-            var coneAngle = _angleShotgun[numberBullet];
+            var coneAngle = shotgunAngleConfig.GetAngle(numberBullet);
             
             float baseAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
             float half = coneAngle * 0.5f;
