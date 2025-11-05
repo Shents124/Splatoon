@@ -18,6 +18,7 @@ namespace Runtime.Manager
         public SpawnConfigData spawnConfigData;
         public BallConfig ballConfig;
         public float angle = 60f;
+        public float spawnDelay = 1f;
         
         private int _currentWave;
         private HashSet<int> _ballAlive = new();
@@ -33,7 +34,7 @@ namespace Runtime.Manager
                 {
                     var spawnPosition = GetRandomSpawnPoint(out var force);
                     SpawnBall(config.ballId, config.attack, config.heath, spawnPosition, force);
-                    await UniTask.Delay(1000);
+                    await UniTask.Delay(TimeSpan.FromSeconds(spawnDelay));
                 }
             }
         }

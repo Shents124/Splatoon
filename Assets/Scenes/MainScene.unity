@@ -155,6 +155,7 @@ MonoBehaviour:
   spawnConfigData: {fileID: 11400000, guid: 71174529485730e46965900e5345b9dc, type: 2}
   ballConfig: {fileID: 11400000, guid: e88352af44bf3904fbf15d10ca38c0dd, type: 2}
   angle: 60
+  spawnDelay: 1
 --- !u!4 &359082450
 Transform:
   m_ObjectHideFlags: 0
@@ -807,7 +808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 1400227769}
-  shotgunAngleConfig: {fileID: 0}
+  shotgunAngleConfig: {fileID: 11400000, guid: 2267281d9a62c184b9b28a83108f4d73, type: 2}
 --- !u!4 &1400227769
 Transform:
   m_ObjectHideFlags: 0
