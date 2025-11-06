@@ -74,7 +74,10 @@ namespace Runtime.Manager
 
             var ballId = baseBall.ballId;
             if (ballId == 1)
+            {
+                
                 return;
+            }
 
             var newBallId = ballId - 1;
             var aimDir = Vector2.up;

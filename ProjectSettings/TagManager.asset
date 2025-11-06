@@ -14,8 +14,8 @@ TagManager:
   - Ball
   - Wall
   - Bullet
-  - 
-  - 
+  - Player
+  - Ground
   - 
   - 
   - 
