@@ -27,6 +27,15 @@
       "source": "local-tarball",
       "dependencies": {}
     },
+    "com.littlebigfun.addressable-importer": {
+      "version": "0.16.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.addressables": "1.1.5"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.unity.2d.animation": {
       "version": "10.2.1",
       "depth": 1,
@@ -378,6 +387,15 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.zbase.unityscreennavigator": {
+      "version": "https://github.com/Zitga-Tech/ZBase.UnityScreenNavigator.git?path=/Packages/ZBase.UnityScreenNavigator",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.cysharp.unitask": "2.5.10"
+      },
+      "hash": "99b4c0bfd9ca1c0fcd4b009d303f1ec3c1208034"
     },
     "org.nuget.system.runtime.compilerservices.unsafe": {
       "version": "6.1.2",
