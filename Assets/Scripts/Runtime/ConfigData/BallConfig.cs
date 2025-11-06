@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Runtime.Constant;
 using Sirenix.OdinInspector;
 using Sirenix.Serialization;
 using UnityEngine;
@@ -26,9 +27,12 @@ namespace Runtime.ConfigData
         public int exp;
         public int coin;
 
-        public float GetRandomScale()
+        public float GetRandomScale(BallType ballType)
         {
-            return UnityEngine.Random.Range(randomSize.x, randomSize.y);
+            if (ballType == BallType.Normal)
+                return UnityEngine.Random.Range(randomSize.x, randomSize.y);
+            
+            return randomSize.y;
         }
     }
 }

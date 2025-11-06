@@ -21,7 +21,7 @@ namespace Runtime.Manager
         {
             await poolService.Initialize();
             weaponManager.Initialize(weaponConfig);
-            await spawnManager.Spawn();
+            await spawnManager.SpawnWave();
         }
     }
 }

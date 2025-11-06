@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b56232d39c5a45b68278d4006cc78f27, type: 3}
+  m_Name: Runtime.ConfigData.MiniBossSpawnConfig
+  m_EditorClassIdentifier: 
+  spawnNormalBossConfigs:
+  - miniBossId: 1
+    spawnInterval: 5
+    ballId: 1
+  - miniBossId: 2
+    spawnInterval: 5
+    ballId: 1
+  - miniBossId: 3
+    spawnInterval: 2
+    ballId: 2
+  - miniBossId: 4
+    spawnInterval: 2
+    ballId: 2
+  - miniBossId: 5
+    spawnInterval: 2
+    ballId: 3

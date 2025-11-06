@@ -24,8 +24,9 @@ namespace Runtime.Manager
         private HashSet<int> _ballAlive = new();
         private int _sortOder;
         
-        public async UniTask Spawn()
+        public async UniTask SpawnWave()
         {
+            Debug.LogWarning("Spawn Wave: " +  _currentWave);
             _ballAlive.Clear();
             var waveConfig = spawnConfigData.GetWaveConfig(_currentWave);
             foreach (var config in waveConfig)
@@ -33,19 +34,21 @@ namespace Runtime.Manager
                 for (int i = 0; i < config.count; i++)
                 {
                     var spawnPosition = GetRandomSpawnPoint(out var force);
-                    SpawnBall(config.ballId, config.attack, config.heath, spawnPosition, force);
+                    SpawnBall(config.ballType, config.ballId, config.attack, config.heath, spawnPosition, force);
                     await UniTask.Delay(TimeSpan.FromSeconds(spawnDelay));
                 }
             }
         }
 
-        private void SpawnBall(int ballId, float attack, float health, Vector2 spawnPosition, Vector2 force)
+        private void SpawnBall(BallType ballType, int ballId, float attack, float health, Vector2 spawnPosition, Vector2 force)
         {
             _sortOder++;
-            var ball = PoolService.Spawn<BaseBall>(PoolType.Ball, PrefabName.BALL_PREFAB);
-            var scale = ballConfig.GetBallConfig(ballId).GetRandomScale();
+            var key = ballType == BallType.Normal ? PrefabName.BALL_PREFAB : PrefabName.MINI_BOSS;
+            var ball = PoolService.Spawn<BaseEnemy>(PoolType.Ball, key);
+            var scale = ballConfig.GetBallConfig(ballId).GetRandomScale(ballType);
             var ballData = new BallData()
             {
+                ballType = ballType,
                 id = ballId,
                 attack = attack,
                 health = health,
@@ -55,7 +58,7 @@ namespace Runtime.Manager
                 sortOrder = _sortOder
             };
                 
-            ball.Initialize(ballData, HandleOnBallDead);
+            ball.Initialize(this, ballData, key, HandleOnBallDead);
             _ballAlive.Add(ball.GetInstanceID());
         }
         
@@ -68,14 +71,15 @@ namespace Runtime.Manager
             return spawnPoint.position;
         }
         
-        private void HandleOnBallDead(BaseBall baseBall)
+        private void HandleOnBallDead(BaseEnemy baseBall)
         {
-            _ballAlive.Remove(baseBall.GetInstanceID());
+            if (_ballAlive.Remove(baseBall.GetInstanceID()) == false)
+                return;
 
             var ballId = baseBall.ballId;
             if (ballId == 1)
             {
-                
+                CheckClearWave();
                 return;
             }
 
@@ -85,7 +89,7 @@ namespace Runtime.Manager
             float half = angle * 0.5f;
 
             var attack = baseBall.GetDamage();
-            var spawnPositon = baseBall.transform.position;
+            var spawnPosition = baseBall.transform.position;
             var heath = baseBall.maxHealth / 2;
             if (heath <= 0)
                 heath = 1;
@@ -96,9 +100,36 @@ namespace Runtime.Manager
                 float offset = Mathf.Lerp(-half, half, t);
                 float rad = (baseAngle + offset) * Mathf.Deg2Rad;
                 Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-                var force = dir * randomForce.y * 2;
+                var force = dir * Random.Range(randomForce.x, randomForce.y) * 2;
                 
-                SpawnBall(newBallId, attack, heath, spawnPositon, force);
+                SpawnBall(baseBall.ballType, newBallId, attack, heath, spawnPosition, force);
+            }
+        }
+
+        public void SpawnNormalBallByMiniBoss(int ballId, Vector2 spawnPosition)
+        {
+            var aimDir = Vector2.up;
+            float baseAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
+            float half = angle * 0.5f;
+            
+            for (int i = 0; i < 2; i++)
+            {
+                float t = (float)i / 1; // 0 → 1
+                float offset = Mathf.Lerp(-half, half, t);
+                float rad = (baseAngle + offset) * Mathf.Deg2Rad;
+                Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+                var force = dir * Random.Range(randomForce.x, randomForce.y) * 2;
+                
+                SpawnBall(BallType.Normal, ballId, 10, 100, spawnPosition, force);
+            }
+        }
+        
+        private void CheckClearWave()
+        {
+            if (_ballAlive.Count == 0)
+            {
+                _currentWave++;
+                SpawnWave().Forget();
             }
         }
     }
