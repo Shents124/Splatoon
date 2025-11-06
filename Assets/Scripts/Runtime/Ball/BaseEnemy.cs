@@ -51,7 +51,6 @@ namespace Runtime.Ball
             
             _currentHealth -= iBullet.GetDamage();
             UpdateHeath();
-            iBullet.Despawn();
             if (_currentHealth <= 0)
             {
                 DeSpawn();

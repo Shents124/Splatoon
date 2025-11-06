@@ -1,0 +1,59 @@
+using System.Collections.Generic;
+using Runtime.Constant;
+
+namespace Runtime.Stat
+{
+    public class ModifiableStat
+    {
+        public float baseValue;
+        
+        private readonly List<StatModifier> _modifiers = new();
+        
+        private float _currentValue;
+
+        public float value => _currentValue;
+
+        private void Calculate()
+        {
+            var finalValue = baseValue;
+            float sumAdd = 0;
+            float sumMul = 0;
+            
+            foreach (var mod in _modifiers)
+            {
+                switch (mod.type)
+                {
+                    case ModifierType.Additive:
+                        sumAdd += mod.value;
+                        break;
+
+                    case ModifierType.Multiplicative:
+                        sumMul += mod.value;
+                        break;
+                }
+            }
+
+            finalValue += sumAdd;
+            finalValue *= (1 + sumMul);
+            
+            _currentValue = finalValue;
+        }
+        
+        public void AddModifier(StatModifier mod)
+        {
+            _modifiers.Add(mod);
+            Calculate();
+        }
+
+        public void RemoveModifier(StatModifier mod)
+        {
+            _modifiers.Remove(mod);
+            Calculate();
+        }
+        
+        public void ClearModifiers()
+        {
+            _modifiers.Clear();
+        }
+    }
+}

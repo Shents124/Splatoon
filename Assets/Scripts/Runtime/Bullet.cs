@@ -1,3 +1,4 @@
+using System;
 using Runtime.Interface;
 using Runtime.Pool;
 using UnityEngine;
@@ -42,6 +43,11 @@ namespace Runtime
             //     transform.position = _startPosition;
             //     DeSpawn();
             // }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            DeSpawn();
         }
 
         private void DeSpawn()
