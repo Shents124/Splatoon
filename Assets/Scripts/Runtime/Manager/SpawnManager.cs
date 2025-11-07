@@ -14,6 +14,7 @@ namespace Runtime.Manager
 {
     public class SpawnManager : MonoBehaviour
     {
+        public BuffManager buffManager;
         public LevelUI levelUI;
         public LevelUpConfig levelUpConfig;
         public List<Transform> spawnPoints = new();
@@ -158,7 +159,7 @@ namespace Runtime.Manager
                 float offset = Mathf.Lerp(-half, half, t);
                 float rad = (baseAngle + offset) * Mathf.Deg2Rad;
                 Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-                var force = dir * Random.Range(randomForce.x, randomForce.y) * 2;
+                var force = dir * (Random.Range(randomForce.x, randomForce.y) * 2);
                 
                 SpawnBall(BallType.Normal, ballId, 10, 100, spawnPosition, force);
             }

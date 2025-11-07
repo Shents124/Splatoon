@@ -10,7 +10,6 @@ namespace Runtime.Skill
     public class StatBuff : BaseBuff
     {
         public StatBuffConfig[] buffs;
-        public ModifierType modifierType;
         private List<StatModifier> _statModifiers;
         
         public override void Apply(WeaponStat stats)
@@ -18,8 +17,8 @@ namespace Runtime.Skill
             _statModifiers = new();
             foreach (var item in buffs)
             {
-                var statModifier = new StatModifier(item.value, modifierType);
-                stats.attack.AddModifier(statModifier);
+                var statModifier = new StatModifier(item.statType, item.value, item.modifierType);
+                stats.AddModifier(item.statType, statModifier);
                 _statModifiers.Add(statModifier);
             }
         }
@@ -28,7 +27,7 @@ namespace Runtime.Skill
         {
             foreach (var item in _statModifiers)
             {
-                stats.attack.RemoveModifier(item);
+                stats.RemoveModifier(item.statType, item);
             }
         }
     }
@@ -36,7 +35,7 @@ namespace Runtime.Skill
     [Serializable]
     public struct StatBuffConfig
     {
-        public BuffType buffType;
+        public StatType statType;
         public float value;
         public ModifierType modifierType;
     }

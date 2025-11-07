@@ -1,6 +1,6 @@
 namespace Runtime.Constant
 {
-    public enum BuffType
+    public enum StatType
     {
         Attack,
         Dmg,
@@ -10,5 +10,6 @@ namespace Runtime.Constant
         BulletPerShot,
         TriggerChance,
         BulletSize,
+        FireRate,
     }
 }

@@ -1,5 +1,7 @@
+using System;
 using Runtime.ConfigData;
-using UnityEngine;
+using Runtime.Constant;
+using Random = UnityEngine.Random;
 
 namespace Runtime.Stat
 {
@@ -13,6 +15,7 @@ namespace Runtime.Stat
         public ModifiableStat fireRate;
         public ModifiableStat bulletPerShot;
         public ModifiableStat bulletSpeed;
+        public ModifiableStat bulletSize;
 
         public void Initialize(WeaponConfig weaponConfig)
         {
@@ -28,6 +31,44 @@ namespace Runtime.Stat
         {
             var random = Random.Range(0, 1f);
             return random <= critRate.value;
+        }
+
+        public void AddModifier(StatType statType, StatModifier statModifier)
+        {
+            var stat = GetStat(statType);
+            stat?.AddModifier(statModifier);
+
+        }
+
+        public void RemoveModifier(StatType statType, StatModifier statModifier)
+        {
+            var stat = GetStat(statType);
+            stat?.RemoveModifier(statModifier);
+        }
+
+        private ModifiableStat GetStat(StatType statType)
+        {
+            switch (statType)
+            {
+                case StatType.Attack:
+                    return attack;
+                case StatType.Dmg:
+                    return dmg;
+                case StatType.CritRate:
+                    return critRate;
+                case StatType.CritDamage:
+                    return critDamage;
+                case StatType.Health:
+                    return health;
+                case StatType.BulletPerShot:
+                    return bulletPerShot;
+                case StatType.BulletSize:
+                    return bulletSize;
+                case StatType.FireRate:
+                    return fireRate;
+                default:
+                    return null;
+            }
         }
     }
 }

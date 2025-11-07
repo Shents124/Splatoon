@@ -1,23 +1,44 @@
+using System;
+using Runtime.Constant;
 using Runtime.Stat;
 using UnityEngine;
 
 namespace Runtime.Skill
 {
-    public class BaseBuff : ScriptableObject, IBuff
+    public class BaseBuff : ScriptableObject, IBuff, IEquatable<BaseBuff>
     {
         public int id;
         public int upgradeId;
         
-        public virtual void Apply(WeaponStat stats)
+        public string skillName;
+        [TextArea]
+        public string description;
+        public BuffRarity rarity;
+        
+        public virtual void Apply(WeaponStat stats) { }
+
+        public virtual void Remove(WeaponStat stats) { }
+
+        public virtual void UpdateBuff(WeaponStat stats) { }
+
+        public bool Equals(BaseBuff other)
         {
+            if (other is null) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return base.Equals(other) && id == other.id;
         }
 
-        public virtual void Remove(WeaponStat stats)
+        public override bool Equals(object obj)
         {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((BaseBuff)obj);
         }
 
-        public virtual void UpdateBuff(WeaponStat stats)
+        public override int GetHashCode()
         {
+            return HashCode.Combine(base.GetHashCode(), id);
         }
     }
 }

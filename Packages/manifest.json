@@ -50,7 +50,8 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.littlebigfun.addressable-importer": "0.16.1"
+    "com.littlebigfun.addressable-importer": "0.16.1",
+    "com.github-glitchenzo.nugetforunity": "4.5.0"
   },
   "scopedRegistries": [
     {
@@ -60,6 +61,7 @@
         "com.cysharp.unitask",
         "com.cysharp.zstring",
         "com.faster-games.t4",
+        "com.github-glitchenzo.nugetforunity",
         "com.littlebigfun.addressable-importer",
         "org.nuget.system.runtime.compilerservices.unsafe"
       ]

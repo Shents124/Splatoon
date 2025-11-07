@@ -1,33 +1,36 @@
 using System.Collections.Generic;
+using Extensions;
 using Runtime.Skill;
-using Runtime.Stat;
 using UnityEngine;
 
 namespace Runtime.Manager
 {
     public class BuffManager : MonoBehaviour
     {
-        public List<BaseBuff> buffs = new List<BaseBuff>();
-        private WeaponStat _weaponStat;
+        [SerializeField] private List<BaseBuff> poolBuff = new();
         
-        public void AddBuff(BaseBuff newBuff)
-        {
-            for (int i = 0; i < buffs.Count; i++)
-            {
-                var exitBuff = buffs[i];
-                if (exitBuff.id == newBuff.id)
-                    return;
+        private List<BaseBuff> _buffs = new List<BaseBuff>();
 
-                if (exitBuff.upgradeId == newBuff.id)
-                {
-                    buffs.RemoveAt(i);
-                    exitBuff.Remove(_weaponStat);
-                    break;
-                }
+        public void ShowSelectBuff()
+        {
+            
+        }
+        
+        private List<BaseBuff> GetGachaBuff()
+        {
+            var pool = new List<BaseBuff>();
+            foreach (var baseBuff in poolBuff)
+            {
+                if (_buffs.Contains(baseBuff))
+                    continue;
+                
+                pool.Add(baseBuff);
             }
             
-            buffs.Add(newBuff);
-            newBuff.Apply(_weaponStat);
+            if (pool.Count <= 3)
+                return pool;
+
+            return pool.GetRandomElements(3);
         }
     }
 }
