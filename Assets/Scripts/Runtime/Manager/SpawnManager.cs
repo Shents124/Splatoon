@@ -6,6 +6,7 @@ using Runtime.Ball;
 using Runtime.ConfigData;
 using Runtime.Constant;
 using Runtime.Pool;
+using Runtime.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -13,6 +14,8 @@ namespace Runtime.Manager
 {
     public class SpawnManager : MonoBehaviour
     {
+        public LevelUI levelUI;
+        public LevelUpConfig levelUpConfig;
         public List<Transform> spawnPoints = new();
         public Vector2 randomForce;
         public SpawnConfigData spawnConfigData;
@@ -23,8 +26,23 @@ namespace Runtime.Manager
         private int _currentWave;
         private HashSet<int> _ballAlive = new();
         private int _sortOder;
-        
-        public async UniTask SpawnWave()
+
+        private int _currentLevel = 1;
+        private int _currentExp;
+        private int _expRequired;
+
+        public async UniTask Initialize()
+        {
+            _currentLevel = 1;
+            _currentExp = 0;
+            _expRequired = levelUpConfig.expRequired[_currentLevel];
+            levelUI.UpdateData(_currentLevel, (float)_currentExp / _expRequired,
+                _currentLevel >= levelUpConfig.expRequired.Length);
+
+            await SpawnWave();
+        }
+
+        private async UniTask SpawnWave()
         {
             Debug.LogWarning("Spawn Wave: " +  _currentWave);
             _ballAlive.Clear();
@@ -45,7 +63,7 @@ namespace Runtime.Manager
             _sortOder++;
             var key = ballType == BallType.Normal ? PrefabName.BALL_PREFAB : PrefabName.MINI_BOSS;
             var ball = PoolService.Spawn<BaseEnemy>(PoolType.Ball, key);
-            var scale = ballConfig.GetBallConfig(ballId).GetRandomScale(ballType);
+            var ballConfigCsv = ballConfig.GetBallConfig(ballId, ballType);
             var ballData = new BallData()
             {
                 ballType = ballType,
@@ -54,8 +72,9 @@ namespace Runtime.Manager
                 health = health,
                 force = force,
                 position = spawnPosition,
-                scale = scale,
-                sortOrder = _sortOder
+                scale = ballConfigCsv.GetRandomScale(ballType),
+                sortOrder = _sortOder,
+                exp = ballConfigCsv.exp,
             };
                 
             ball.Initialize(this, ballData, key, HandleOnBallDead);
@@ -76,6 +95,27 @@ namespace Runtime.Manager
             if (_ballAlive.Remove(baseBall.GetInstanceID()) == false)
                 return;
 
+            var exp = baseBall.ballData.exp;
+            _currentExp += exp;
+            if (_currentExp >= _expRequired)
+            {
+                _currentLevel++;
+                if (_currentLevel >= levelUpConfig.maxLevel)
+                {
+                    levelUI.UpdateData(_currentLevel, 1, true);
+                }
+                else
+                {
+                    _currentExp -= _expRequired;
+                    _expRequired = levelUpConfig.expRequired[_currentLevel - 1];
+                    levelUI.UpdateData(_currentLevel, (float)_currentExp / _expRequired);
+                }
+            }
+            else
+            {
+                levelUI.UpdateData(_currentLevel, (float)_currentExp / _expRequired);
+            }
+            
             var ballId = baseBall.ballId;
             if (ballId == 1)
             {

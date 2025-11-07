@@ -1,14 +1,18 @@
 using Runtime.ConfigData;
 using Runtime.Constant;
+using Runtime.Interface;
 using Runtime.Pool;
+using Runtime.Stat;
 using UnityEngine;
 
 namespace Runtime.Manager
 {
-    public class WeaponManager : MonoBehaviour
+    public class WeaponManager : MonoBehaviour, IWeaponManager
     {
         [SerializeField] private Transform firePoint;
         [SerializeField] private ShotgunAngleConfig shotgunAngleConfig;
+
+        private WeaponStat _weaponStat;
         
         private WeaponConfig _weaponConfig;
 
@@ -19,6 +23,8 @@ namespace Runtime.Manager
         {
             _weaponConfig = weaponConfig;
             _fireInterval = 1 / _weaponConfig.fireRate;
+            _weaponStat = new WeaponStat();
+            _weaponStat.Initialize(_weaponConfig);
         }
         
         private void Update()
@@ -56,7 +62,7 @@ namespace Runtime.Manager
                 var bullet = SpawnBullet(PrefabName.BulletRiffe);
                 bullet.transform.position = startPos;
                 bullet.transform.rotation = Quaternion.identity;
-                bullet.Launch(PrefabName.BulletRiffe, _weaponConfig.bulletSpeed * Vector2.up, _weaponConfig.bulletLifeTime, _weaponConfig.bulletRange);
+                bullet.Launch(this, PrefabName.BulletRiffe, _weaponConfig.bulletSpeed * Vector2.up, _weaponConfig.bulletLifeTime);
                 startPos += new Vector2(offset, 0);
             }
         }
@@ -101,13 +107,24 @@ namespace Runtime.Manager
             var bullet = SpawnBullet(PrefabName.BulletShotGun);
             bullet.transform.position = spawnPos;
             bullet.transform.rotation = rot;
-            bullet.Launch(PrefabName.BulletShotGun, dir * speed, lifeTime, maxDistance);
+            bullet.Launch(this, PrefabName.BulletShotGun, dir * speed, lifeTime);
         }
         
         private Bullet SpawnBullet(string key)
         {
             var clone = PoolService.Spawn<Bullet>(PoolType.Bullet, key);
             return clone;
+        }
+
+        public float GetDamage()
+        {
+            var damage = _weaponStat.attack.value * _weaponStat.dmg.value;
+            if (_weaponStat.IsCrit())
+            {
+                return damage * _weaponStat.critDamage.value;
+            }
+            
+            return damage;
         }
     }
 }

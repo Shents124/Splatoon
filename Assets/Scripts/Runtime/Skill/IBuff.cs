@@ -1,3 +1,5 @@
+using Runtime.Stat;
+
 namespace Runtime.Skill
 {
     public interface IBuff

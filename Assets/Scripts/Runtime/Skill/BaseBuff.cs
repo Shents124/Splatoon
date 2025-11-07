@@ -1,3 +1,4 @@
+using Runtime.Stat;
 using UnityEngine;
 
 namespace Runtime.Skill

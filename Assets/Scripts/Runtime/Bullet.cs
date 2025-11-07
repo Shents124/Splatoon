@@ -1,4 +1,3 @@
-using System;
 using Runtime.Interface;
 using Runtime.Pool;
 using UnityEngine;
@@ -10,22 +9,20 @@ namespace Runtime
         [SerializeField] private Rigidbody2D rigid2D;
 
         private float _lifeTime;
-        private float _maxDistance;
         private string _key;
         
         private float _currentLifeTime;
-        private Vector2 _startPosition;
         private bool _isDespawn;
+        private IWeaponManager _manager;
         
-        public void Launch(string key, Vector2 velocity, float lifeTime, float maxDistance)
+        public void Launch(IWeaponManager iWeaponManager, string key, Vector2 velocity, float lifeTime)
         {
+            _manager = iWeaponManager;
             _isDespawn = false;
             _key = key;
             _lifeTime = lifeTime;
-            _maxDistance = maxDistance;
             rigid2D.linearVelocity = velocity;
             
-            _startPosition = transform.position;
             _currentLifeTime = 0;
         }
 
@@ -37,12 +34,6 @@ namespace Runtime
                 _currentLifeTime = 0;
                 DeSpawn();
             }
-
-            // if (Vector2.Distance(transform.position, _startPosition) > _maxDistance)
-            // {
-            //     transform.position = _startPosition;
-            //     DeSpawn();
-            // }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -59,10 +50,7 @@ namespace Runtime
             PoolService.Despawn(PoolType.Bullet, _key, gameObject);
         }
 
-        public float GetDamage()
-        {
-            return 1;
-        }
+        public float GetDamage() => _manager.GetDamage();
 
         public void Despawn()
         {

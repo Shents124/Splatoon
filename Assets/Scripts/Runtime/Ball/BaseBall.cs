@@ -18,6 +18,7 @@ namespace Runtime.Ball
         public Vector2 force;
         public Vector2 position;
         public int sortOrder;
+        public int exp;
     }
     
     public class BaseBall : BaseEnemy

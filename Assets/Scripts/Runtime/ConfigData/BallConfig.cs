@@ -12,10 +12,16 @@ namespace Runtime.ConfigData
     {
         [OdinSerialize]
         public Dictionary<int, BallConfigData> ballConfig = new();
+        
+        [OdinSerialize]
+        public Dictionary<int, BallConfigData> miniBossConfig = new();
 
-        public BallConfigData GetBallConfig(int ballId)
+        public BallConfigData GetBallConfig(int ballId, BallType ballType)
         {
-            return ballConfig[ballId];
+            if (ballType == BallType.Normal)
+                return ballConfig[ballId];
+            
+            return miniBossConfig[ballId];
         }
     }
 

@@ -13,15 +13,15 @@ namespace Runtime.Ball
     {
         [SerializeField] private SortingGroup sortingGroup;
         [SerializeField] private TextMeshPro heathTxt;
-        public int ballId => _ballData.id;
-        public float maxHealth => _ballData.health;
+        public int ballId => ballData.id;
+        public float maxHealth => ballData.health;
         
-        public BallType ballType => _ballData.ballType;
+        public BallType ballType => ballData.ballType;
         
         protected SpawnManager spawnManager;
         
         private float _currentHealth;
-        private BallData _ballData;
+        public BallData ballData { get; private set; }
         
         private bool _isDead;
         private Action<BaseEnemy> _onDead;
@@ -30,7 +30,7 @@ namespace Runtime.Ball
         public virtual void Initialize(SpawnManager spawnManager, BallData ballData, string key, Action<BaseEnemy> onDead)
         {
             this.spawnManager = spawnManager;
-            _ballData = ballData;
+            this.ballData = ballData;
             _key = key;
             _onDead = onDead;
             _isDead = false;
@@ -64,7 +64,7 @@ namespace Runtime.Ball
         
         public float GetDamage()
         {
-            return _ballData.attack;
+            return ballData.attack;
         }
 
         private void DeSpawn()

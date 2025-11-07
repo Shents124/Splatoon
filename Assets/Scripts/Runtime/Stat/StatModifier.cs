@@ -1,6 +1,6 @@
 using Runtime.Constant;
 
-namespace Runtime
+namespace Runtime.Stat
 {
     public class StatModifier
     {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Skill;
+using Runtime.Stat;
 using UnityEngine;
 
 namespace Runtime.Manager

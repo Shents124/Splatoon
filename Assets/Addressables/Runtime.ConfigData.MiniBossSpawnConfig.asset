@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnNormalBossConfigs:
   - miniBossId: 1
-    spawnInterval: 5
+    spawnInterval: 2
     ballId: 1
   - miniBossId: 2
-    spawnInterval: 5
+    spawnInterval: 2
     ballId: 1
   - miniBossId: 3
     spawnInterval: 2

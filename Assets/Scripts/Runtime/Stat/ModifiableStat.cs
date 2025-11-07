@@ -5,17 +5,24 @@ namespace Runtime.Stat
 {
     public class ModifiableStat
     {
-        public float baseValue;
+        private readonly float _baseValue;
         
-        private readonly List<StatModifier> _modifiers = new();
+        private readonly List<StatModifier> _modifiers;
         
         private float _currentValue;
 
         public float value => _currentValue;
 
+        public ModifiableStat(float baseValue)
+        {
+            _baseValue = baseValue;
+            _modifiers = new();
+            Calculate();
+        }
+        
         private void Calculate()
         {
-            var finalValue = baseValue;
+            var finalValue = _baseValue;
             float sumAdd = 0;
             float sumMul = 0;
             
