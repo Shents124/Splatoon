@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using Runtime.ConfigData;
 using Runtime.Pool;
+using Runtime.Stat;
 using UnityEngine;
 
 namespace Runtime.Manager
@@ -11,6 +12,7 @@ namespace Runtime.Manager
         [SerializeField] private WeaponManager weaponManager;
         [SerializeField] private WeaponConfig weaponConfig;
         [SerializeField] private SpawnManager spawnManager;
+        [SerializeField] private BuffManager buffManager;
 
         private void Start()
         {
@@ -20,7 +22,9 @@ namespace Runtime.Manager
         private async UniTask InitializeAsync()
         {
             await poolService.Initialize();
-            weaponManager.Initialize(weaponConfig);
+            var weaponStat = new WeaponStat();
+            weaponManager.Initialize(weaponStat, weaponConfig);
+            buffManager.SetWeaponStat(weaponStat);
             await spawnManager.Initialize();
         }
     }

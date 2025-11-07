@@ -19,11 +19,11 @@ namespace Runtime.Manager
         private float _fireInterval;
         private float _currentTimeFireInterval;
         
-        public void Initialize(WeaponConfig weaponConfig)
+        public void Initialize(WeaponStat weaponStat, WeaponConfig weaponConfig)
         {
             _weaponConfig = weaponConfig;
             _fireInterval = 1 / _weaponConfig.fireRate;
-            _weaponStat = new WeaponStat();
+            _weaponStat = weaponStat;
             _weaponStat.Initialize(_weaponConfig);
         }
         

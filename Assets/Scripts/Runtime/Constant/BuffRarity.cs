@@ -4,6 +4,6 @@ namespace Runtime.Constant
     {
         Normal,
         Legendary,
-        Exotic
+        Mythic
     }
 }

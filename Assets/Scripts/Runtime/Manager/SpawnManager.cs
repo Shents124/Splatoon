@@ -36,10 +36,9 @@ namespace Runtime.Manager
         {
             _currentLevel = 1;
             _currentExp = 0;
-            _expRequired = levelUpConfig.expRequired[_currentLevel];
+            _expRequired = levelUpConfig.ExpRequired(_currentLevel);
             levelUI.UpdateData(_currentLevel, (float)_currentExp / _expRequired,
-                _currentLevel >= levelUpConfig.expRequired.Length);
-
+                _currentLevel >= levelUpConfig.maxLevel);
             await SpawnWave();
         }
 
@@ -108,9 +107,11 @@ namespace Runtime.Manager
                 else
                 {
                     _currentExp -= _expRequired;
-                    _expRequired = levelUpConfig.expRequired[_currentLevel - 1];
+                    _expRequired = levelUpConfig.ExpRequired(_currentLevel);
                     levelUI.UpdateData(_currentLevel, (float)_currentExp / _expRequired);
                 }
+                
+                buffManager.ShowSelectBuff(levelUpConfig.BuffRarity(_currentLevel - 1));
             }
             else
             {
