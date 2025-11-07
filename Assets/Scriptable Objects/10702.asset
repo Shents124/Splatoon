@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10701
   upgradeId: -1
-  skillName: 
-  description: 
+  skillName: Health +
+  description: "HP \U0001F53A\U0001F53A"
+  rarity: 0
   buffs:
   - statType: 4
     value: 0.2

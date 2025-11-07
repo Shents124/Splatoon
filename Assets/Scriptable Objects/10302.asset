@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10301
   upgradeId: -1
-  skillName: 
-  description: 
+  skillName: Critical Shot +
+  description: "Crit DMG \U0001F53A\U0001F53A"
+  rarity: 0
   buffs:
   - statType: 3
     value: 1

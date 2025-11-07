@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10601
   upgradeId: 10602
-  skillName: 
-  description: 
+  skillName: Attack
+  description: "ATK \U0001F53A"
+  rarity: 0
   buffs:
   - statType: 0
     value: 0.1

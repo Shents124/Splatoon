@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10401
   upgradeId: 10402
-  skillName: 
-  description: 
+  skillName: Tough Bullet
+  description: "Bullet Size \U0001F53A"
+  rarity: 0
   buffs:
   - statType: 7
     value: 1.5

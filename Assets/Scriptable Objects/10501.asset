@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 10501
   upgradeId: 10502
-  skillName: 
-  description: 
+  skillName: Extra Bullet
+  description: Extra bullet +1
+  rarity: 0
   buffs:
   - statType: 5
     value: 1
