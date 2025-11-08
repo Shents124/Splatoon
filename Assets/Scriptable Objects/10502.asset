@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ab279264f4e029411e1d9cb46af9b, type: 3}
   m_Name: 10502
   m_EditorClassIdentifier: 
-  id: 10501
+  rootId: 5
+  id: 10502
   upgradeId: -1
   skillName: Extra Bullet +
   description: Extra bullet +2

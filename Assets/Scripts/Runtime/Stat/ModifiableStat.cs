@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Runtime.Constant;
+using UnityEngine;
 
 namespace Runtime.Stat
 {
@@ -50,12 +51,14 @@ namespace Runtime.Stat
         {
             _modifiers.Add(mod);
             Calculate();
+            Debug.Log($"{mod.statType}: {_currentValue}");
         }
 
         public void RemoveModifier(StatModifier mod)
         {
             _modifiers.Remove(mod);
             Calculate();
+            Debug.Log($"{mod.statType}: {_currentValue}");
         }
         
         public void ClearModifiers()

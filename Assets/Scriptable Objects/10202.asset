@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ab279264f4e029411e1d9cb46af9b, type: 3}
   m_Name: 10202
   m_EditorClassIdentifier: 
+  rootId: 2
   id: 10202
   upgradeId: -1
   skillName: Heavy Shot +

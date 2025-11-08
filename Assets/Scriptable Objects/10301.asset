@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ab279264f4e029411e1d9cb46af9b, type: 3}
   m_Name: 10301
   m_EditorClassIdentifier: 
+  rootId: 3
   id: 10301
   upgradeId: 10302
   skillName: Critical Shot

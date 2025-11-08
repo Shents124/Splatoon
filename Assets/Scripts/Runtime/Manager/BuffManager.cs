@@ -11,10 +11,10 @@ namespace Runtime.Manager
 {
     public class BuffManager : MonoBehaviour
     {
-        [SerializeField] private List<BaseBuff> buffLevel1 = new();
-        [SerializeField] private List<BaseBuff> buffLevel2 = new();
-        [SerializeField] private List<BaseBuff> otherBuffs = new();
+        [SerializeField] private List<BaseBuff> poolBuffUpgrade= new();
+        [SerializeField] private List<BaseBuff> pollBuffNotUpgrade = new();
         
+        [SerializeField] private List<BaseBuff> poolValidBuff = new();
         private List<BaseBuff> _buffs = new();
 
         private WeaponStat _weaponStat;
@@ -28,23 +28,27 @@ namespace Runtime.Manager
         {
             Time.timeScale = 0;
 
-            var poolLevel2Ids = new List<int>();
-            foreach (var buff in _buffs)
+            poolValidBuff = new List<BaseBuff>();
+
+            foreach (var baseBuff in poolBuffUpgrade)
             {
-                if (buff.upgradeId > 0)
+                if (!HasBuffFromFamily(baseBuff.rootId) && baseBuff.upgradeId > 0)
                 {
-                    poolLevel2Ids.Add(buff.upgradeId);
+                    poolValidBuff.Add(baseBuff);
+                }
+                
+                if (HasBuffFromFamily(baseBuff.rootId))
+                {
+                    if (baseBuff.upgradeId < 0)
+                    {
+                        poolValidBuff.Add(baseBuff);
+                    }
                 }
             }
             
-            var poolBuffLevel2 = buffLevel2.Where(x => poolLevel2Ids.Contains(x.upgradeId)).ToList();
-
-            var poolBuff = new List<BaseBuff>();
-            poolBuff.AddRange(buffLevel1);
-            poolBuff.AddRange(poolBuffLevel2);
-            poolBuff.AddRange(otherBuffs);
+            poolValidBuff.AddRange(pollBuffNotUpgrade);
             
-            var buffShows = poolBuff.Where(x => x.rarity == buffRarity).Except(_buffs).Shuffle().Take(3).ToList();
+            var buffShows = poolValidBuff.Where(x => x.rarity == buffRarity).Except(_buffs).Shuffle().Take(3).ToList();
 
             var data = new ShowBuffModalData()
             {
@@ -64,10 +68,13 @@ namespace Runtime.Manager
                 if (existingBuff.Equals(selectedBuff))
                     break;
 
-                if (existingBuff.upgradeId == selectedBuff.id)
+                if (existingBuff.rootId == selectedBuff.rootId)
                 {
-                    indexRemove = i;
-                    break;
+                    if (existingBuff.upgradeId == selectedBuff.id)
+                    {
+                        indexRemove = i;
+                        break;
+                    }
                 }
             }
             
@@ -75,7 +82,6 @@ namespace Runtime.Manager
             {
                 var removeBuff = _buffs[indexRemove];
                 _buffs.RemoveAt(indexRemove);
-                RemoveBuff(removeBuff);
                 removeBuff.Remove(_weaponStat);
             }
             
@@ -84,15 +90,15 @@ namespace Runtime.Manager
             
             Time.timeScale = 1;
         }
-
-        private void RemoveBuff(BaseBuff buff)
+        
+        private bool HasBuffFromFamily(int rootId)
         {
-            if (buffLevel1.Contains(buff))
-                buffLevel1.Remove(buff);
-            if (buffLevel2.Contains(buff))
-                buffLevel2.Remove(buff);
-            if (otherBuffs.Contains(buff))
-                otherBuffs.Remove(buff);
+            return _buffs.Exists(b => b.rootId == rootId);
+        }
+
+        private bool HaveBuff(int buffId)
+        {
+            return _buffs.Exists(b => b.id == buffId);
         }
     }
 }

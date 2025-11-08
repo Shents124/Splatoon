@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5428ddf5b0184d3daf0ea1a5327fa799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffManager: {fileID: 0}
+  buffManager: {fileID: 1878426360}
   levelUI: {fileID: 992975704}
   levelUpConfig: {fileID: 11400000, guid: 70bccc9efb3acfe449178aea79cb9c07, type: 2}
   spawnPoints:
@@ -566,15 +566,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Level 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 93a15c712541ffe45bcbd2194f36faf4, type: 2}
+  m_sharedMaterial: {fileID: 1561107206971857239, guid: 93a15c712541ffe45bcbd2194f36faf4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4279703322
+  m_fontColor: {r: 0.103773594, g: 0.08859915, b: 0.08859915, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   weaponManager: {fileID: 1400227768}
   weaponConfig: {fileID: 11400000, guid: 70a34af82db9e894da40be61e79fccf4, type: 2}
   spawnManager: {fileID: 359082449}
-  buffManager: {fileID: 0}
+  buffManager: {fileID: 1878426360}
 --- !u!4 &1350507848
 Transform:
   m_ObjectHideFlags: 0
@@ -1590,7 +1590,7 @@ GameObject:
   - component: {fileID: 1783546669}
   m_Layer: 7
   m_Name: Left
-  m_TagString: Untagged
+  m_TagString: LeftWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1809,7 +1809,7 @@ GameObject:
   - component: {fileID: 1833205562}
   m_Layer: 7
   m_Name: Right
-  m_TagString: Untagged
+  m_TagString: RightWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1886,7 +1886,7 @@ GameObject:
   - component: {fileID: 1878426361}
   - component: {fileID: 1878426360}
   m_Layer: 0
-  m_Name: GachaManager
+  m_Name: BuffManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1904,7 +1904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0222559a2689475c8389ca2796389a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolBuff:
+  poolBuffUpgrade:
   - {fileID: 11400000, guid: 15c5b00febf75454c8d977e2b138fe7b, type: 2}
   - {fileID: 11400000, guid: 7972b2105f8ad334c8ba834387de73af, type: 2}
   - {fileID: 11400000, guid: 1fb97e34b4f7aaf4e9096b0385c0bea1, type: 2}
@@ -1919,6 +1919,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9899e16200e84a74e865d3babfa9f0fc, type: 2}
   - {fileID: 11400000, guid: 417464583e9bdce4abcb3e0e993233e3, type: 2}
   - {fileID: 11400000, guid: affc32d5f0cdef646b91f8e7158e01cf, type: 2}
+  - {fileID: 11400000, guid: 75274d5e8531548499dce9aaf8cb37d8, type: 2}
+  - {fileID: 11400000, guid: 4919c6f61115f6f478abefb9f00581cf, type: 2}
+  - {fileID: 11400000, guid: 81ff11086d890f74bb8795769f788bd0, type: 2}
+  - {fileID: 11400000, guid: 5194ecec4dc9994438bceb4fe1f0c90c, type: 2}
+  pollBuffNotUpgrade: []
+  poolValidBuff: []
 --- !u!4 &1878426361
 Transform:
   m_ObjectHideFlags: 0
@@ -2021,7 +2027,7 @@ GameObject:
   - component: {fileID: 2025907765}
   m_Layer: 7
   m_Name: Top
-  m_TagString: Untagged
+  m_TagString: TopWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -1,10 +1,19 @@
+using System;
+using Runtime.Stat;
+using ZBase.Foundation.PubSub;
+
 namespace Runtime.Skill
 {
+    [Serializable]
     public abstract class BaseSkill
     {
-        public virtual void Execute()
+        protected ISubscription subscription;
+        protected WeaponStat weaponStat;
+
+        public virtual void Apply(WeaponStat stats)
         {
-            
+            weaponStat = stats;
         }
+        public abstract void Remove(WeaponStat stats);
     }
 }

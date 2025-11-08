@@ -395,6 +395,36 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.zbase.collections.pooled": {
+      "version": "2.8.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.zbase.foundation": {
+      "version": "1.0.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.zbase.foundation.pubsub": {
+      "version": "1.5.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "org.nuget.system.runtime.compilerservices.unsafe": "6.0.0",
+        "com.cysharp.unitask": "2.3.3",
+        "com.zbase.collections.pooled": "2.8.4",
+        "com.zbase.foundation": "1.0.5"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.zbase.unityscreennavigator": {
       "version": "https://github.com/Zitga-Tech/ZBase.UnityScreenNavigator.git?path=/Packages/ZBase.UnityScreenNavigator",
       "depth": 0,

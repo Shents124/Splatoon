@@ -51,7 +51,10 @@
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
     "com.littlebigfun.addressable-importer": "0.16.1",
-    "com.github-glitchenzo.nugetforunity": "4.5.0"
+    "com.github-glitchenzo.nugetforunity": "4.5.0",
+    "com.zbase.collections.pooled": "2.8.4",
+    "com.zbase.foundation": "1.0.7",
+    "com.zbase.foundation.pubsub": "1.5.1"
   },
   "scopedRegistries": [
     {
@@ -63,6 +66,8 @@
         "com.faster-games.t4",
         "com.github-glitchenzo.nugetforunity",
         "com.littlebigfun.addressable-importer",
+        "com.zbase.collections.pooled",
+        "com.zbase.foundation",
         "org.nuget.system.runtime.compilerservices.unsafe"
       ]
     }

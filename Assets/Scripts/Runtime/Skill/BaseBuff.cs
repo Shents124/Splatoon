@@ -7,6 +7,7 @@ namespace Runtime.Skill
 {
     public class BaseBuff : ScriptableObject, IBuff, IEquatable<BaseBuff>
     {
+        public int rootId;
         public int id;
         public int upgradeId;
         
@@ -25,7 +26,7 @@ namespace Runtime.Skill
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
-            return base.Equals(other) && id == other.id;
+            return base.Equals(other) && rootId == other.rootId && id == other.id;
         }
 
         public override bool Equals(object obj)
@@ -38,7 +39,7 @@ namespace Runtime.Skill
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), id);
+            return HashCode.Combine(base.GetHashCode(), rootId, id);
         }
     }
 }

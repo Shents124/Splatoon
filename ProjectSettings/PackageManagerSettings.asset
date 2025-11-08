@@ -39,6 +39,8 @@ MonoBehaviour:
     - com.faster-games.t4
     - com.github-glitchenzo.nugetforunity
     - com.littlebigfun.addressable-importer
+    - com.zbase.collections.pooled
+    - com.zbase.foundation
     - org.nuget.system.runtime.compilerservices.unsafe
     m_IsDefault: 0
     m_Capabilities: 0

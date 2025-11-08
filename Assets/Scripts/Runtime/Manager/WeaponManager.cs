@@ -15,14 +15,12 @@ namespace Runtime.Manager
         private WeaponStat _weaponStat;
         
         private WeaponConfig _weaponConfig;
-
-        private float _fireInterval;
+        
         private float _currentTimeFireInterval;
         
         public void Initialize(WeaponStat weaponStat, WeaponConfig weaponConfig)
         {
             _weaponConfig = weaponConfig;
-            _fireInterval = 1 / _weaponConfig.fireRate;
             _weaponStat = weaponStat;
             _weaponStat.Initialize(_weaponConfig);
         }
@@ -30,7 +28,7 @@ namespace Runtime.Manager
         private void Update()
         {
             _currentTimeFireInterval += Time.deltaTime;
-            if (_currentTimeFireInterval >= _fireInterval)
+            if (_currentTimeFireInterval >= 1 / fireRate)
             {
                 _currentTimeFireInterval = 0;
                 Fire();
@@ -53,7 +51,6 @@ namespace Runtime.Manager
         private void FireRiffe()
         {
             var offset = 0.5f;
-            var numberBullet = _weaponConfig.bulletPerShot;
             var x = ((float)(numberBullet - 1) * offset) / 2;
             var minX = firePoint.position.x - x;
             var startPos = new Vector2(minX, firePoint.position.y);
@@ -62,7 +59,8 @@ namespace Runtime.Manager
                 var bullet = SpawnBullet(PrefabName.BulletRiffe);
                 bullet.transform.position = startPos;
                 bullet.transform.rotation = Quaternion.identity;
-                bullet.Launch(this, PrefabName.BulletRiffe, _weaponConfig.bulletSpeed * Vector2.up, _weaponConfig.bulletLifeTime);
+                bullet.Launch(this, PrefabName.BulletRiffe, _weaponConfig.bulletSpeed * Vector2.up,
+                    _weaponConfig.bulletLifeTime, _weaponConfig.bulletSpeed, sizeScale);
                 startPos += new Vector2(offset, 0);
             }
         }
@@ -70,7 +68,6 @@ namespace Runtime.Manager
         private void FireShotgun()
         {
             var aimDir = Vector2.up;
-            var numberBullet = _weaponConfig.bulletPerShot;
             var coneAngle = shotgunAngleConfig.GetAngle(numberBullet);
             
             float baseAngle = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
@@ -79,7 +76,7 @@ namespace Runtime.Manager
             // Nếu chỉ 1 viên, không cần offset
             if (numberBullet == 1)
             {
-                FireOneBulletShotgun(baseAngle, _weaponConfig.bulletSpeed, _weaponConfig.bulletLifeTime,
+                FireOneBulletShotgun(baseAngle, bulletSpeed, _weaponConfig.bulletLifeTime,
                     _weaponConfig.bulletRange);
                 return;
             }
@@ -89,7 +86,7 @@ namespace Runtime.Manager
             {
                 float t = (float)i / (numberBullet - 1); // 0 → 1
                 float offset = Mathf.Lerp(-half, half, t);
-                FireOneBulletShotgun(baseAngle + offset, _weaponConfig.bulletSpeed, _weaponConfig.bulletLifeTime,
+                FireOneBulletShotgun(baseAngle + offset, bulletSpeed, _weaponConfig.bulletLifeTime,
                     _weaponConfig.bulletRange);
             }
         }
@@ -107,7 +104,7 @@ namespace Runtime.Manager
             var bullet = SpawnBullet(PrefabName.BulletShotGun);
             bullet.transform.position = spawnPos;
             bullet.transform.rotation = rot;
-            bullet.Launch(this, PrefabName.BulletShotGun, dir * speed, lifeTime);
+            bullet.Launch(this, PrefabName.BulletShotGun, dir * speed, lifeTime, _weaponConfig.bulletSpeed, sizeScale);
         }
         
         private Bullet SpawnBullet(string key)
@@ -116,6 +113,16 @@ namespace Runtime.Manager
             return clone;
         }
 
+        private float fireRate => _weaponStat.fireRate.value;
+        
+        private float bulletSpeed => _weaponStat.bulletSpeed.value;
+
+        private int numberBullet => (int)_weaponStat.bulletPerShot.value;
+
+        private float sizeScale => _weaponStat.bulletSize.value;
+
+        public int NumberBounce() => (int) _weaponStat.numberBounce.value;
+        
         public float GetDamage()
         {
             var damage = _weaponStat.attack.value * _weaponStat.dmg.value;
@@ -126,5 +133,7 @@ namespace Runtime.Manager
             
             return damage;
         }
+
+      
     }
 }

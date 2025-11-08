@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ab279264f4e029411e1d9cb46af9b, type: 3}
   m_Name: 10702
   m_EditorClassIdentifier: 
-  id: 10701
+  rootId: 7
+  id: 10702
   upgradeId: -1
   skillName: Health +
   description: "HP \U0001F53A\U0001F53A"

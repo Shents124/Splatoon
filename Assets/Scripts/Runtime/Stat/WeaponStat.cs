@@ -1,4 +1,3 @@
-using System;
 using Runtime.ConfigData;
 using Runtime.Constant;
 using Random = UnityEngine.Random;
@@ -16,6 +15,7 @@ namespace Runtime.Stat
         public ModifiableStat bulletPerShot;
         public ModifiableStat bulletSpeed;
         public ModifiableStat bulletSize;
+        public ModifiableStat numberBounce;
 
         public void Initialize(WeaponConfig weaponConfig)
         {
@@ -25,8 +25,11 @@ namespace Runtime.Stat
             critDamage = new ModifiableStat(weaponConfig.critDamage);
             bulletPerShot = new ModifiableStat(weaponConfig.bulletPerShot);
             bulletSpeed = new ModifiableStat(weaponConfig.bulletSpeed);
+            fireRate = new ModifiableStat(weaponConfig.fireRate);
+            bulletSize = new ModifiableStat(1);
+            numberBounce = new ModifiableStat(0);
         }
-
+        
         public bool IsCrit()
         {
             var random = Random.Range(0, 1f);
@@ -37,7 +40,6 @@ namespace Runtime.Stat
         {
             var stat = GetStat(statType);
             stat?.AddModifier(statModifier);
-
         }
 
         public void RemoveModifier(StatType statType, StatModifier statModifier)
@@ -66,6 +68,8 @@ namespace Runtime.Stat
                     return bulletSize;
                 case StatType.FireRate:
                     return fireRate;
+                case StatType.Bounce:
+                    return numberBounce;
                 default:
                     return null;
             }

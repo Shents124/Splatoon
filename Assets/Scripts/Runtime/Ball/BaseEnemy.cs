@@ -3,6 +3,8 @@ using Runtime.Constant;
 using Runtime.Interface;
 using Runtime.Manager;
 using Runtime.Pool;
+using Runtime.PubSub;
+using Runtime.PubSub.CommonMessage;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -47,9 +49,16 @@ namespace Runtime.Ball
             if (other == null)
                 return;
 
-            if (!BulletCache.TryGetBulletDamage(other, out var iBullet)) return;
+            if (BulletCache.TryGetIBullet(other, out var iBullet))
+            {
+                WorldMessenger.Pub(new BulletHitEnemy(iBullet.position));
+                _currentHealth -= iBullet.GetDamage();
+            }
+            else if (BulletCache.TryGetDamageable(other, out var damageable))
+            {
+                _currentHealth -= damageable.GetDamage();
+            }
             
-            _currentHealth -= iBullet.GetDamage();
             UpdateHeath();
             if (_currentHealth <= 0)
             {

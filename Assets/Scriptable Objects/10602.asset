@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ab279264f4e029411e1d9cb46af9b, type: 3}
   m_Name: 10602
   m_EditorClassIdentifier: 
-  id: 10601
+  rootId: 6
+  id: 10602
   upgradeId: -1
   skillName: Attack +
   description: "ATK \U0001F53A\U0001F53A"

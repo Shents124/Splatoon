@@ -14,15 +14,19 @@ namespace Runtime
         private float _currentLifeTime;
         private bool _isDespawn;
         private IWeaponManager _manager;
+        private float _speed;
+        private int _numberBounce;
         
-        public void Launch(IWeaponManager iWeaponManager, string key, Vector2 velocity, float lifeTime)
+        public void Launch(IWeaponManager iWeaponManager, string key, Vector2 velocity, float lifeTime, float speed, float sizeScale)
         {
+            _numberBounce = 0;
             _manager = iWeaponManager;
+            _speed = speed;
             _isDespawn = false;
             _key = key;
             _lifeTime = lifeTime;
             rigid2D.linearVelocity = velocity;
-            
+            transform.localScale = sizeScale * Vector3.one;
             _currentLifeTime = 0;
         }
 
@@ -38,9 +42,49 @@ namespace Runtime
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            DeSpawn();
+            if (CanBounce() == false)
+            {
+                DeSpawn();
+                return;
+            }
+            
+            if (other.gameObject.CompareTag("LeftWall"))
+            {
+                var incoming = rigid2D.linearVelocity.normalized;
+                var normal = Vector2.right;          // mặt tường bên phải
+                Vector2 reflected = Vector2.Reflect(incoming, normal);
+                    
+                rigid2D.linearVelocity = reflected * _speed;
+                transform.up = reflected;
+                _numberBounce++;
+            }
+            else if (other.gameObject.CompareTag("RightWall"))
+            {
+                var incoming = rigid2D.linearVelocity.normalized;
+                var normal = Vector2.right;          // mặt tường bên phải
+                Vector2 reflected = Vector2.Reflect(incoming, normal);
+                    
+                rigid2D.linearVelocity = reflected * _speed;
+                transform.up = reflected;
+                _numberBounce++;
+            }
+            else if (other.gameObject.CompareTag("TopWall"))
+            {
+                var incoming = rigid2D.linearVelocity.normalized;
+                var normal = Vector2.down;          // mặt tường bên phải
+                Vector2 reflected = Vector2.Reflect(incoming, normal);
+                    
+                rigid2D.linearVelocity = reflected * _speed;
+                transform.up = reflected;
+                _numberBounce++;
+            }
         }
 
+        private bool CanBounce()
+        {
+            return _numberBounce < _manager.NumberBounce();
+        }
+        
         private void DeSpawn()
         {
             if (_isDespawn)
@@ -56,5 +100,7 @@ namespace Runtime
         {
             DeSpawn();
         }
+
+        public Vector2 position => transform.position;
     }
 }

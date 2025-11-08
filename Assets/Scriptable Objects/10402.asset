@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77ab279264f4e029411e1d9cb46af9b, type: 3}
   m_Name: 10402
   m_EditorClassIdentifier: 
+  rootId: 4
   id: 10402
   upgradeId: -1
   skillName: Tough Bullet +
@@ -19,5 +20,5 @@ MonoBehaviour:
   rarity: 0
   buffs:
   - statType: 7
-    value: 2
+    value: 1
     modifierType: 1

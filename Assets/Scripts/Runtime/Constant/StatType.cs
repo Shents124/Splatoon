@@ -11,5 +11,6 @@ namespace Runtime.Constant
         TriggerChance,
         BulletSize,
         FireRate,
+        Bounce,
     }
 }

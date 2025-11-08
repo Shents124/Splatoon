@@ -26,7 +26,7 @@ namespace Runtime.UI
         {
             _buff = baseBuff;
             _onSelected = onSelected;
-            buffName.text = baseBuff.id.ToString();
+            buffName.text = baseBuff.skillName;
             buffDescription.text = baseBuff.description;
             holder.color = Helper.GetColorByBuffRarity(baseBuff.rarity);
         }
