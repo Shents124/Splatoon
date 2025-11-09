@@ -56,7 +56,7 @@ namespace Runtime.Manager
                 onSelected = OnSelectedBuff
             };
             
-            UiService.OpenModalAsync(ModalType.ModalShowBuff, args: data).Forget();
+            UiService.OpenModalAsync(ModalType.ModalShowBuff, closeWhenClickOnBackDrop: false, args: data).Forget();
         }
 
         private void OnSelectedBuff(BaseBuff selectedBuff)
@@ -86,6 +86,7 @@ namespace Runtime.Manager
             }
             
             _buffs.Add(selectedBuff);
+            selectedBuff.Init();
             selectedBuff.Apply(_weaponStat);
             
             Time.timeScale = 1;

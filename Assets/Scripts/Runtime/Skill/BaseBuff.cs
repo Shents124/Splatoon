@@ -15,6 +15,11 @@ namespace Runtime.Skill
         [TextArea]
         public string description;
         public BuffRarity rarity;
+
+        public virtual void Init()
+        {
+            
+        }
         
         public virtual void Apply(WeaponStat stats) { }
 

@@ -1,13 +1,23 @@
+using System.Collections.Generic;
+using Runtime.Constant;
 using Runtime.Interface;
+using Runtime.Pool;
+using Runtime.PubSub;
+using Runtime.PubSub.CommonMessage;
+using Runtime.Skill;
+using Runtime.Stat;
+using Runtime.UI;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.InputSystem.UI;
+using ZBase.Foundation.PubSub;
 using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 namespace Runtime.Manager
 {
     public class PlayerManager : MonoBehaviour
     {
+        [SerializeField] private PlayerStatUI statUI;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private InputSystemUIInputModule uiInputModule;
         [SerializeField] private float moveSpeed = 5f;
@@ -18,7 +28,25 @@ namespace Runtime.Manager
 
         private float _maxHeath;
         private float _currentHeath;
-        
+        private float _shield;
+
+        private List<ISubscription> _subscriptions = new();
+
+        private void Awake()
+        {
+           WorldMessenger.Sub<AddShieldMessage>(msg =>
+            {
+                _shield = msg.value;
+            }).AddTo(_subscriptions);
+           
+           WorldMessenger.Sub<SpawnSpikeShieldMessage>(SpawnSpikeShield).AddTo(_subscriptions);
+        }
+
+        private void OnDestroy()
+        {
+            _subscriptions?.UnsubscribeAll();
+        }
+
         private void OnEnable()
         {
             EnhancedTouchSupport.Enable();
@@ -28,13 +56,17 @@ namespace Runtime.Manager
         private void OnDisable()
         {
             EnhancedTouchSupport.Disable();
-            TouchSimulation.Disable(); 
+            TouchSimulation.Disable();
         }
 
-        public void Initialize(float maxHeath)
+        public void Initialize(WeaponStat weaponStat)
         {
-            _maxHeath = maxHeath;
+            _maxHeath = weaponStat.health.value;
             _currentHeath = _maxHeath;
+            _shield = 0;
+            
+            statUI.UpdateHealth(_currentHeath);
+            statUI.UpdateShield(_shield);
         }
         
         void Start()
@@ -61,14 +93,14 @@ namespace Runtime.Manager
             var touchCount = Touch.activeTouches.Count;
             if (touchCount == 0)
                 return;
-            
+
             var touch = Touch.activeTouches[0];
-            
+
             if (touch.valid == false)
             {
                 return;
             }
-                
+
             if (IsPointerOverUI(touch.touchId))
             {
                 return;
@@ -77,21 +109,51 @@ namespace Runtime.Manager
             // Chuyển sang world-space
             _touchPosition = mainCamera.ScreenToWorldPoint(touch.screenPosition);
         }
-        
+
         bool IsPointerOverUI(int touchId)
         {
             return uiInputModule.IsPointerOverGameObject(touchId);
         }
 
+        private void SpawnSpikeShield(SpawnSpikeShieldMessage msg)
+        {
+            _shield += msg.shield;
+            var clone = PoolService.Spawn<SpikeShield>(PoolType.Bullet, PrefabName.Spike_Shield);
+            clone.transform.SetParent(gameObject.transform);
+            clone.transform.localPosition = Vector3.zero;
+            clone.Initialize(msg.damage);
+        }
+        
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.TryGetComponent(out IDamageable damageable))
             {
-                _currentHeath -= damageable.GetDamage();
+                var damage = damageable.GetDamage();
+                if (damage <= _shield)
+                {
+                    _shield -= damage;
+                    statUI.UpdateShield(_shield);
+                    return;
+                }
+                
+                var damageRemain = damage - _shield;
+                _shield = 0;
+
+                _currentHeath -= damageRemain;
+                _currentHeath = Mathf.Clamp(_currentHeath, 0, _maxHeath);
+                
+                statUI.UpdateHealth(_currentHeath);
+                statUI.UpdateShield(_shield);
                 if (_currentHeath <= 0)
                 {
                     Debug.LogError("Player died");
                 }
+                else if (_currentHeath / _maxHeath <= 0.3f)
+                {
+                    WorldMessenger.Pub(new HealthUnder30());
+                }
+                
+                
             }
         }
     }

@@ -10,10 +10,19 @@ namespace Runtime.Skill
         protected ISubscription subscription;
         protected WeaponStat weaponStat;
 
+        public virtual void Init()
+        {
+            
+        }
+        
         public virtual void Apply(WeaponStat stats)
         {
             weaponStat = stats;
         }
-        public abstract void Remove(WeaponStat stats);
+
+        public virtual void Remove(WeaponStat stats)
+        {
+            
+        }
     }
 }

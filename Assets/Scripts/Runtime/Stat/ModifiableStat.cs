@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Runtime.Constant;
 using UnityEngine;
@@ -6,6 +7,8 @@ namespace Runtime.Stat
 {
     public class ModifiableStat
     {
+        public Action<float> onValueChange;
+        
         private readonly float _baseValue;
         
         private readonly List<StatModifier> _modifiers;
@@ -18,10 +21,10 @@ namespace Runtime.Stat
         {
             _baseValue = baseValue;
             _modifiers = new();
-            Calculate();
+            Calculate(false);
         }
         
-        private void Calculate()
+        private void Calculate(bool pubEvent = true)
         {
             var finalValue = _baseValue;
             float sumAdd = 0;
@@ -45,6 +48,10 @@ namespace Runtime.Stat
             finalValue *= (1 + sumMul);
             
             _currentValue = finalValue;
+            if (pubEvent)
+            {
+                onValueChange?.Invoke(_currentValue);
+            }
         }
         
         public void AddModifier(StatModifier mod)

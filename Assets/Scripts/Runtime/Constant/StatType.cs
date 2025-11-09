@@ -12,5 +12,6 @@ namespace Runtime.Constant
         BulletSize,
         FireRate,
         Bounce,
+        Shield,
     }
 }

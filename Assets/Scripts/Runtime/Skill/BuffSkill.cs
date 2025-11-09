@@ -8,6 +8,12 @@ namespace Runtime.Skill
     {
         [SerializeReference] public BaseSkill baseSkill;
 
+        public override void Init()
+        {
+            baseSkill.Init();
+            base.Init();
+        }
+
         public override void Apply(WeaponStat stats)
         {
             baseSkill.Apply(stats);

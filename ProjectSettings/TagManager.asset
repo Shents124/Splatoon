@@ -47,6 +47,9 @@ TagManager:
   - name: Ball
     uniqueID: 3976765855
     locked: 0
+  - name: Vfx
+    uniqueID: 2392393813
+    locked: 0
   - name: UI
     uniqueID: 128728333
     locked: 0

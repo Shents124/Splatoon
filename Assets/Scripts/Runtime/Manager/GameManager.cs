@@ -13,6 +13,7 @@ namespace Runtime.Manager
         [SerializeField] private WeaponConfig weaponConfig;
         [SerializeField] private SpawnManager spawnManager;
         [SerializeField] private BuffManager buffManager;
+        [SerializeField] private PlayerManager playerManager;
 
         private void Start()
         {
@@ -25,6 +26,7 @@ namespace Runtime.Manager
             var weaponStat = new WeaponStat();
             weaponManager.Initialize(weaponStat, weaponConfig);
             buffManager.SetWeaponStat(weaponStat);
+            playerManager.Initialize(weaponStat);
             await spawnManager.Initialize();
         }
     }

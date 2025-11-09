@@ -18,7 +18,7 @@ namespace Runtime.Skill
         public override void Apply(WeaponStat stats)
         {
             base.Apply(stats);
-            subscription = WorldMessenger.Sub<BulletHitEnemy>(msg => Handle(msg.Position));
+            subscription = WorldMessenger.Sub<BulletHitEnemy>(msg => Handle(msg.position));
         }
 
         public override void Remove(WeaponStat stats)

@@ -16,6 +16,7 @@ namespace Runtime.Stat
         public ModifiableStat bulletSpeed;
         public ModifiableStat bulletSize;
         public ModifiableStat numberBounce;
+        public ModifiableStat shield;
 
         public void Initialize(WeaponConfig weaponConfig)
         {
@@ -28,6 +29,8 @@ namespace Runtime.Stat
             fireRate = new ModifiableStat(weaponConfig.fireRate);
             bulletSize = new ModifiableStat(1);
             numberBounce = new ModifiableStat(0);
+            shield = new ModifiableStat(0);
+            health = new ModifiableStat(100);
         }
         
         public bool IsCrit()
@@ -70,6 +73,8 @@ namespace Runtime.Stat
                     return fireRate;
                 case StatType.Bounce:
                     return numberBounce;
+                case StatType.Shield:
+                    return shield;
                 default:
                     return null;
             }
