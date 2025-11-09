@@ -80,7 +80,8 @@ namespace Runtime.Manager
 
         private void HandleValueChange(float obj)
         {
-            _currentHeath *= obj / _maxHeath;
+            var x = _currentHeath / _maxHeath;
+            _currentHeath = x * obj;
             _maxHeath = obj;
             statUI.UpdateHealth(_currentHeath);
         }
