@@ -1,10 +1,9 @@
 using System;
+using System.Collections.Generic;
+using Extensions;
 using Runtime.Constant;
 using Runtime.Manager;
-using Runtime.Pool;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace Runtime.Ball
 {
@@ -24,11 +23,19 @@ namespace Runtime.Ball
     public class BaseBall : BaseEnemy
     {
         [SerializeField] private Rigidbody2D rigid2D;
-        
+        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private List<Sprite> sprites;
         public override void Initialize(SpawnManager spawnManager, BallData ballData, string key, Action<BaseEnemy> onDead)
         {
             base.Initialize(spawnManager, ballData, key, onDead);
+            SetSprite();
             rigid2D.AddForce(ballData.force, ForceMode2D.Impulse);
+        }
+
+        private void SetSprite()
+        {
+            var sprite = sprites.GetRandomElement();
+            spriteRenderer.sprite = sprite;
         }
     }
 }

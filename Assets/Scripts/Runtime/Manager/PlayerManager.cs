@@ -1,9 +1,11 @@
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Runtime.Constant;
 using Runtime.Interface;
 using Runtime.Pool;
 using Runtime.PubSub;
 using Runtime.PubSub.CommonMessage;
+using Runtime.Service;
 using Runtime.Skill;
 using Runtime.Stat;
 using Runtime.UI;
@@ -20,13 +22,14 @@ namespace Runtime.Manager
         [SerializeField] private List<Transform> droneContainers;
         [SerializeField] private PlayerStatUI statUI;
         [SerializeField] private Camera mainCamera;
-        [SerializeField] private InputSystemUIInputModule uiInputModule;
+       
         [SerializeField] private float moveSpeed = 5f;
         [SerializeField] private float boundMove;
 
         private Rigidbody2D _rb;
         private Vector2 _touchPosition;
-
+        private InputSystemUIInputModule _uiInputModule;
+        
         private float _maxHeath;
         private float _currentHeath;
         private float _shield;
@@ -70,8 +73,18 @@ namespace Runtime.Manager
             
             statUI.UpdateHealth(_currentHeath);
             statUI.UpdateShield(_shield);
+            _uiInputModule = FindFirstObjectByType<InputSystemUIInputModule>();
+
+            weaponStat.health.onValueChange += HandleValueChange;
         }
-        
+
+        private void HandleValueChange(float obj)
+        {
+            _currentHeath *= obj / _maxHeath;
+            _maxHeath = obj;
+            statUI.UpdateHealth(_currentHeath);
+        }
+
         void Start()
         {
             _rb = GetComponent<Rigidbody2D>();
@@ -115,7 +128,7 @@ namespace Runtime.Manager
 
         bool IsPointerOverUI(int touchId)
         {
-            return uiInputModule.IsPointerOverGameObject(touchId);
+            return _uiInputModule.IsPointerOverGameObject(touchId);
         }
 
         private void SpawnSpikeShield(SpawnSpikeShieldMessage msg)
@@ -164,7 +177,8 @@ namespace Runtime.Manager
                 statUI.UpdateShield(_shield);
                 if (_currentHeath <= 0)
                 {
-                    Debug.LogError("Player died");
+                    Time.timeScale = 0;
+                    UiService.OpenModalAsync(ModalType.ModalLose, closeWhenClickOnBackDrop:false).Forget();
                 }
                 else if (_currentHeath / _maxHeath <= 0.3f)
                 {

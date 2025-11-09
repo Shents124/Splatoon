@@ -7,6 +7,7 @@ namespace Runtime.Service
     public enum ModalType
     {
         ModalShowBuff,
+        ModalLose
     }
     
     public static class UiService
