@@ -17,6 +17,7 @@ namespace Runtime.Manager
 {
     public class PlayerManager : MonoBehaviour
     {
+        [SerializeField] private List<Transform> droneContainers;
         [SerializeField] private PlayerStatUI statUI;
         [SerializeField] private Camera mainCamera;
         [SerializeField] private InputSystemUIInputModule uiInputModule;
@@ -31,6 +32,7 @@ namespace Runtime.Manager
         private float _shield;
 
         private List<ISubscription> _subscriptions = new();
+        private List<Drone> _drones = new();
 
         private void Awake()
         {
@@ -40,6 +42,7 @@ namespace Runtime.Manager
             }).AddTo(_subscriptions);
            
            WorldMessenger.Sub<SpawnSpikeShieldMessage>(SpawnSpikeShield).AddTo(_subscriptions);
+           WorldMessenger.Sub<SpawnDroneMessage>(SpawnDrone).AddTo(_subscriptions);
         }
 
         private void OnDestroy()
@@ -123,6 +126,21 @@ namespace Runtime.Manager
             clone.transform.localPosition = Vector3.zero;
             clone.Initialize(msg.damage);
         }
+
+        private void SpawnDrone(SpawnDroneMessage msg)
+        {
+            foreach (var drone in _drones)
+            {
+                drone.Despawn();
+            }
+
+            for (int i = 0; i < msg.numberDrone; i++)
+            {
+                var drone = PoolService.Spawn<Drone>(PoolType.Bullet, PrefabName.drone);
+                drone.transform.SetParent(droneContainers[i]);
+                drone.Initialize(msg.fireRate, msg.damage);
+            }
+        }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
@@ -152,8 +170,6 @@ namespace Runtime.Manager
                 {
                     WorldMessenger.Pub(new HealthUnder30());
                 }
-                
-                
             }
         }
     }

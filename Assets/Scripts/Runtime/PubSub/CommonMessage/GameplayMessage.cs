@@ -28,4 +28,11 @@ namespace Runtime.PubSub.CommonMessage
         public float shield;
         public float damage;
     }
+
+    public struct SpawnDroneMessage
+    {
+        public int numberDrone;
+        public float damage;
+        public float fireRate;
+    }
 }

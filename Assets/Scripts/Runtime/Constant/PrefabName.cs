@@ -9,6 +9,8 @@ namespace Runtime.Constant
         public const string Horizontal_bullet = "horizontal_bullet";
         public const string Explosion_bullet = "explosion_bullet";
         public const string Spike_Shield = "spike_shield";
+        public const string drone_bullet = "drone_bullet";
+        public const string drone = "drone";
     }
     
 }
