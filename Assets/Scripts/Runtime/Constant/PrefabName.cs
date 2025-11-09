@@ -11,6 +11,7 @@ namespace Runtime.Constant
         public const string Spike_Shield = "spike_shield";
         public const string drone_bullet = "drone_bullet";
         public const string drone = "drone";
+        public const string ki_bullet = "ki_bullet";
     }
     
 }

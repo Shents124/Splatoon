@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 69e0cbcd7202d70478dbe86dc4178ddf
+    m_Address: ki_bullet
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7f8070f768f990244967b00213f568bc
     m_Address: drone_bullet
     m_ReadOnly: 0

@@ -2334,9 +2334,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolBuffUpgrade:
+  - {fileID: 11400000, guid: 85ef63ca8419f884fbfa2bb66c14c26b, type: 2}
+  - {fileID: 11400000, guid: 5823797ccbccd9d42ad922f1158c8049, type: 2}
   - {fileID: 11400000, guid: ac19e0ef94666654d90fb28636ca3de8, type: 2}
+  - {fileID: 11400000, guid: 3dd8ddea15fe9fb49ae90b7bb49a657d, type: 2}
+  - {fileID: 11400000, guid: 15c5b00febf75454c8d977e2b138fe7b, type: 2}
+  - {fileID: 11400000, guid: 7972b2105f8ad334c8ba834387de73af, type: 2}
+  - {fileID: 11400000, guid: 1fb97e34b4f7aaf4e9096b0385c0bea1, type: 2}
+  - {fileID: 11400000, guid: cace6d245852bfb4bb99674baed105a2, type: 2}
+  - {fileID: 11400000, guid: 543eb20dfc64cf74db753f594caa00b3, type: 2}
+  - {fileID: 11400000, guid: 65bd7b22412d20e49bce364a967a387c, type: 2}
+  - {fileID: 11400000, guid: d54c9513b1f2c2d45a781da68b6ce7b0, type: 2}
+  - {fileID: 11400000, guid: daa9db2440b6e694a912c07dd23a076b, type: 2}
+  - {fileID: 11400000, guid: b5507fa1cbf39384c9a37ab2c00d63c6, type: 2}
+  - {fileID: 11400000, guid: a29d0d5f94f92ff41a715b15fff6ee69, type: 2}
+  - {fileID: 11400000, guid: 82f0684d70dfc4046901c56a722c3e59, type: 2}
+  - {fileID: 11400000, guid: 9899e16200e84a74e865d3babfa9f0fc, type: 2}
+  - {fileID: 11400000, guid: 417464583e9bdce4abcb3e0e993233e3, type: 2}
+  - {fileID: 11400000, guid: affc32d5f0cdef646b91f8e7158e01cf, type: 2}
+  - {fileID: 11400000, guid: 75274d5e8531548499dce9aaf8cb37d8, type: 2}
+  - {fileID: 11400000, guid: 5194ecec4dc9994438bceb4fe1f0c90c, type: 2}
+  - {fileID: 11400000, guid: 4919c6f61115f6f478abefb9f00581cf, type: 2}
+  - {fileID: 11400000, guid: 81ff11086d890f74bb8795769f788bd0, type: 2}
+  - {fileID: 11400000, guid: 0b1716012c2e2e842a6286f93ac73631, type: 2}
+  - {fileID: 11400000, guid: 14fb75eec77e58e4aa136b621eff6578, type: 2}
   pollBuffNotUpgrade:
+  - {fileID: 11400000, guid: 3362297b2d1a58c44bf6c2e3b2b2a9f1, type: 2}
+  - {fileID: 11400000, guid: 90dab0840246bc5479b03be338994ee2, type: 2}
+  - {fileID: 11400000, guid: 4662424af4201534caeb9fb78e1e7764, type: 2}
   - {fileID: 11400000, guid: dace883ef34873b4fbcc2fce32243e08, type: 2}
+  - {fileID: 11400000, guid: 17674f0892c663940b1be761700ac238, type: 2}
+  - {fileID: 11400000, guid: 98365af44b359d54e9919fe552cd987c, type: 2}
   poolValidBuff: []
 --- !u!4 &1878426361
 Transform:
