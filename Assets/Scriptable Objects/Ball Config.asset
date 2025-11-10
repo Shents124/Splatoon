@@ -246,7 +246,7 @@ MonoBehaviour:
       Data: Runtime.ConfigData.BallConfigData, Assembly-CSharp
     - Name: id
       Entry: 3
-      Data: 0
+      Data: 1
     - Name: randomSize
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
@@ -261,7 +261,7 @@ MonoBehaviour:
       Data: 
     - Name: exp
       Entry: 3
-      Data: 50
+      Data: 10
     - Name: coin
       Entry: 3
       Data: 0
@@ -282,13 +282,13 @@ MonoBehaviour:
       Data: Runtime.ConfigData.BallConfigData, Assembly-CSharp
     - Name: id
       Entry: 3
-      Data: 0
+      Data: 2
     - Name: randomSize
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 2
+      Data: 0
     - Name: 
       Entry: 4
       Data: 2.2
@@ -297,7 +297,7 @@ MonoBehaviour:
       Data: 
     - Name: exp
       Entry: 3
-      Data: 50
+      Data: 10
     - Name: coin
       Entry: 3
       Data: 0
@@ -318,13 +318,13 @@ MonoBehaviour:
       Data: Runtime.ConfigData.BallConfigData, Assembly-CSharp
     - Name: id
       Entry: 3
-      Data: 0
+      Data: 3
     - Name: randomSize
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 2.8
+      Data: 0
     - Name: 
       Entry: 4
       Data: 3
@@ -333,7 +333,7 @@ MonoBehaviour:
       Data: 
     - Name: exp
       Entry: 3
-      Data: 50
+      Data: 10
     - Name: coin
       Entry: 3
       Data: 0
@@ -354,13 +354,13 @@ MonoBehaviour:
       Data: Runtime.ConfigData.BallConfigData, Assembly-CSharp
     - Name: id
       Entry: 3
-      Data: 0
+      Data: 4
     - Name: randomSize
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 3.8
+      Data: 0
     - Name: 
       Entry: 4
       Data: 4
@@ -369,7 +369,7 @@ MonoBehaviour:
       Data: 
     - Name: exp
       Entry: 3
-      Data: 50
+      Data: 10
     - Name: coin
       Entry: 3
       Data: 0
@@ -390,13 +390,13 @@ MonoBehaviour:
       Data: Runtime.ConfigData.BallConfigData, Assembly-CSharp
     - Name: id
       Entry: 3
-      Data: 0
+      Data: 5
     - Name: randomSize
       Entry: 7
       Data: UnityEngine.Vector2, UnityEngine.CoreModule
     - Name: 
       Entry: 4
-      Data: 5
+      Data: 0
     - Name: 
       Entry: 4
       Data: 5.2
@@ -405,7 +405,7 @@ MonoBehaviour:
       Data: 
     - Name: exp
       Entry: 3
-      Data: 50
+      Data: 10
     - Name: coin
       Entry: 3
       Data: 0

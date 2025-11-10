@@ -58,7 +58,7 @@ namespace Runtime.Manager
             }
         }
 
-        private void SpawnBall(BallType ballType, int ballId, float attack, float health, Vector2 spawnPosition, Vector2 force)
+        private void SpawnBall(BallType ballType, int ballId, float attack, float health, Vector2 spawnPosition, Vector2 force, bool hasExp = true)
         {
             _sortOder++;
             var key = ballType == BallType.Normal ? PrefabName.BALL_PREFAB : PrefabName.MINI_BOSS;
@@ -74,7 +74,7 @@ namespace Runtime.Manager
                 position = spawnPosition,
                 scale = ballConfigCsv.GetRandomScale(ballType),
                 sortOrder = _sortOder,
-                exp = ballConfigCsv.exp,
+                exp = !hasExp ? 0 : ballConfigCsv.exp,
             };
                 
             ball.Initialize(this, ballData, key, HandleOnBallDead);
@@ -162,7 +162,7 @@ namespace Runtime.Manager
                 Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
                 var force = dir * (Random.Range(randomForce.x, randomForce.y) * 2);
                 
-                SpawnBall(BallType.Normal, ballId, 10, 100, spawnPosition, force);
+                SpawnBall(BallType.Normal, ballId, 10, 100, spawnPosition, force, false);
             }
         }
         

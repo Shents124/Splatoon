@@ -10,7 +10,7 @@ namespace Runtime.ConfigData
         public string weaponName;
         public WeaponType weaponType;
         public int attack;
-        public int dmg;
+        public float dmg;
         public float critRate;
         public float critDamage;
         public float fireRate;

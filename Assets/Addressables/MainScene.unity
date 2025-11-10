@@ -1429,7 +1429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   poolService: {fileID: 1015725115}
   weaponManager: {fileID: 1400227768}
-  weaponConfig: {fileID: 11400000, guid: 70a34af82db9e894da40be61e79fccf4, type: 2}
+  weaponConfig: {fileID: 11400000, guid: 42f1e255cafd8e64caf6e2cb08b0f28e, type: 2}
   spawnManager: {fileID: 359082449}
   buffManager: {fileID: 1878426360}
   playerManager: {fileID: 1691226696}
