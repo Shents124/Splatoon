@@ -71,7 +71,17 @@ namespace Runtime
             else if (other.gameObject.CompareTag("TopWall"))
             {
                 var incoming = rigid2D.linearVelocity.normalized;
-                var normal = Vector2.down;          // mặt tường bên phải
+                var normal = Vector2.down;         
+                Vector2 reflected = Vector2.Reflect(incoming, normal);
+                    
+                rigid2D.linearVelocity = reflected * _speed;
+                transform.up = reflected;
+                _numberBounce++;
+            }
+            else if (other.gameObject.CompareTag("Ground"))
+            {
+                var incoming = rigid2D.linearVelocity.normalized;
+                var normal = Vector2.up;         
                 Vector2 reflected = Vector2.Reflect(incoming, normal);
                     
                 rigid2D.linearVelocity = reflected * _speed;
