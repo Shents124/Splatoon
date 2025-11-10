@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5428ddf5b0184d3daf0ea1a5327fa799, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossHealth: 2000
   buffManager: {fileID: 1878426360}
   levelUI: {fileID: 992975704}
   levelUpConfig: {fileID: 11400000, guid: 70bccc9efb3acfe449178aea79cb9c07, type: 2}

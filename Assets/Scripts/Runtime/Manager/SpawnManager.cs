@@ -6,6 +6,7 @@ using Runtime.Ball;
 using Runtime.ConfigData;
 using Runtime.Constant;
 using Runtime.Pool;
+using Runtime.Service;
 using Runtime.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,6 +15,7 @@ namespace Runtime.Manager
 {
     public class SpawnManager : MonoBehaviour
     {
+        public float bossHealth = 2000;
         public BuffManager buffManager;
         public LevelUI levelUI;
         public LevelUpConfig levelUpConfig;
@@ -44,8 +46,17 @@ namespace Runtime.Manager
 
         private async UniTask SpawnWave()
         {
-            Debug.LogWarning("Spawn Wave: " +  _currentWave);
             _ballAlive.Clear();
+
+            if (_currentWave == 9)
+            {
+                var boss = PoolService.Spawn<Boss>(PoolType.Ball, "boss");
+                
+                boss.Initialize(this, new BallData(){ health = bossHealth, scale = 2}, "boss", HandleOnBallDead);
+                _ballAlive.Add(boss.GetInstanceID());
+                return;
+            }
+            
             var waveConfig = spawnConfigData.GetWaveConfig(_currentWave);
             foreach (var config in waveConfig)
             {
@@ -147,7 +158,7 @@ namespace Runtime.Manager
                 float offset = Mathf.Lerp(-half, half, t);
                 float rad = (baseAngle + offset) * Mathf.Deg2Rad;
                 Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-                var force = dir * Random.Range(randomForce.x, randomForce.y) * ballConfigCsv.weight * 2;
+                var force = dir * Random.Range(randomForce.x, randomForce.y) * ballConfigCsv.weight ;
                 
                 SpawnBall(baseBall.ballType, newBallId, attack, heath, spawnPosition, force);
             }
@@ -176,7 +187,15 @@ namespace Runtime.Manager
             if (_ballAlive.Count == 0)
             {
                 _currentWave++;
-                SpawnWave().Forget();
+                if (_currentWave >= 10)
+                {
+                    Time.timeScale = 0;
+                    UiService.OpenModalAsync(ModalType.ModalWin, closeWhenClickOnBackDrop:false).Forget();
+                }
+                else
+                {
+                    SpawnWave().Forget();
+                }
             }
         }
     }
