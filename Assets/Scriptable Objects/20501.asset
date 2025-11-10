@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 205
   id: 20501
   upgradeId: 20502
-  skillName: 
-  description: 
+  skillName: Combat Support
+  description: Summon a Drone
   rarity: 1
   baseSkill:
     rid: 6259183454489411922

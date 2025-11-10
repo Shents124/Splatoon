@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 303
   id: 30301
   upgradeId: -1
-  skillName: 
-  description: 
+  skillName: Explosive Bullet
+  description: Bullet has a chance to trigger explosion when hitting an enemy
   rarity: 2
   baseSkill:
     rid: 6259183454489411698

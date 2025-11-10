@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 304
   id: 30401
   upgradeId: -1
-  skillName: 
-  description: 
+  skillName: Spike Shield
+  description: Create a barrier with Spike
   rarity: 2
   baseSkill:
     rid: 6259183454489411699

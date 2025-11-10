@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 30
   id: 30101
   upgradeId: -1
-  skillName: Bounce
-  description: "HP \U0001F53A\U0001F53A"
+  skillName: Trinity
+  description: Crit Rate +5%, Fire Rate +10%, DMG +5%
   rarity: 2
   buffs:
   - statType: 2

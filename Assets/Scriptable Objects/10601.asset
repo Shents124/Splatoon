@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 10601
   upgradeId: 10602
   skillName: Attack
-  description: "ATK \U0001F53A"
+  description: ATK +10%
   rarity: 0
   buffs:
   - statType: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 10201
   upgradeId: 10202
   skillName: Heavy Shot
-  description: "Crit Rate \U0001F53A"
+  description: Crit Rate +10%
   rarity: 0
   buffs:
   - statType: 2

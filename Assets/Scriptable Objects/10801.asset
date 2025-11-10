@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 8
   id: 10801
   upgradeId: 10802
-  skillName: 
-  description: 
+  skillName: Shredder Bullet
+  description: Bullet has a chance to split into 2 bullets when destroyed
   rarity: 0
   baseSkill:
     rid: 6259183431657980016

@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 10301
   upgradeId: 10302
   skillName: Critical Shot
-  description: "Crit DMG \U0001F53A"
+  description: Critical DMG +50%
   rarity: 0
   buffs:
   - statType: 3

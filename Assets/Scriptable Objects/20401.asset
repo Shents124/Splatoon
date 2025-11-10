@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 204
   id: 20401
   upgradeId: 20402
-  skillName: 
-  description: 
+  skillName: Critical Shield
+  description: When HP drops to <30% or lower for the first time, gain a shield
   rarity: 1
   baseSkill:
     rid: 6259183454489411697

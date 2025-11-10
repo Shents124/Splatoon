@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 10101
   upgradeId: 10102
   skillName: Quick Shot
-  description: "Fire Rate \U0001F53A"
+  description: Fire Rate +5%
   rarity: 0
   buffs:
   - statType: 8

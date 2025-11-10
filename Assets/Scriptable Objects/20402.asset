@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 204
   id: 20401
   upgradeId: -1
-  skillName: 
-  description: 
+  skillName: Critical Shield +
+  description: Shield HP increase
   rarity: 1
   baseSkill:
     rid: 6259183454489411697

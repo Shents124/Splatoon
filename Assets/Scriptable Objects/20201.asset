@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 11
   id: 20201
   upgradeId: -1
-  skillName: Bounce
-  description: "HP \U0001F53A\U0001F53A"
+  skillName: Huge Attack
+  description: ATK +30%
   rarity: 1
   buffs:
   - statType: 0

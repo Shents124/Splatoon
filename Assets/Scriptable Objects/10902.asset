@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 9
   id: 10902
   upgradeId: -1
-  skillName: Bounce
-  description: "HP \U0001F53A\U0001F53A"
+  skillName: Bouncy Bullet +
+  description: Bullet can bounce twice when hit the wall
   rarity: 0
   buffs:
   - statType: 9

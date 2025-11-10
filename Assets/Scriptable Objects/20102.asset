@@ -15,8 +15,8 @@ MonoBehaviour:
   rootId: 10
   id: 20102
   upgradeId: -1
-  skillName: Bounce
-  description: "HP \U0001F53A\U0001F53A"
+  skillName: Bullet Storm +
+  description: Extra bullet +3, DMG -15%
   rarity: 1
   buffs:
   - statType: 5

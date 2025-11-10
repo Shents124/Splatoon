@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 10701
   upgradeId: 10702
   skillName: Health
-  description: "HP \U0001F53A"
+  description: HP +10%
   rarity: 0
   buffs:
   - statType: 4
