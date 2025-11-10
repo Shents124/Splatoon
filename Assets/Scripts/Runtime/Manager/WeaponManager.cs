@@ -17,16 +17,21 @@ namespace Runtime.Manager
         private WeaponConfig _weaponConfig;
         
         private float _currentTimeFireInterval;
+        private bool _isInit;
         
         public void Initialize(WeaponStat weaponStat, WeaponConfig weaponConfig)
         {
             _weaponConfig = weaponConfig;
             _weaponStat = weaponStat;
             _weaponStat.Initialize(_weaponConfig);
+            _isInit = true;
         }
         
         private void Update()
         {
+            if (_isInit == false)
+                return;
+            
             _currentTimeFireInterval += Time.deltaTime;
             if (_currentTimeFireInterval >= 1 / fireRate)
             {

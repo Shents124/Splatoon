@@ -37,6 +37,7 @@ namespace Runtime.Manager
         private List<ISubscription> _subscriptions = new();
         private List<Drone> _drones = new();
 
+        public bool isUnder30 => _currentHeath / _maxHeath >= 0.3f;
         private void Awake()
         {
            WorldMessenger.Sub<AddShieldMessage>(msg =>
