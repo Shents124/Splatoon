@@ -1,7 +1,10 @@
 using System;
+using Runtime.Manager;
 using Runtime.PubSub;
 using Runtime.PubSub.CommonMessage;
 using Runtime.Stat;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Runtime.Skill
 {
@@ -19,7 +22,17 @@ namespace Runtime.Skill
 
         public override void Apply(WeaponStat stats)
         {
+            var player = Object.FindFirstObjectByType<PlayerManager>();
+            if (player != null)
+            {
+                if (player.isUnder30)
+                {
+                    Handle();
+                }
+            }
+            
             WorldMessenger.Sub<HealthUnder30>(Handle);
+            
             base.Apply(stats);
         }
 

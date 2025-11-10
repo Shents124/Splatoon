@@ -26,7 +26,7 @@ namespace Runtime
             _key = key;
             _lifeTime = lifeTime;
             rigid2D.linearVelocity = velocity;
-            transform.localScale = sizeScale * Vector3.one;
+            transform.localScale = Vector3.one * (sizeScale * 1.5f);
             _currentLifeTime = 0;
         }
 

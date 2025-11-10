@@ -52,7 +52,7 @@ namespace Runtime.Manager
             {
                 var boss = PoolService.Spawn<Boss>(PoolType.Ball, "boss");
                 
-                boss.Initialize(this, new BallData(){ health = bossHealth, scale = 2}, "boss", HandleOnBallDead);
+                boss.Initialize(this, new BallData(){ id = 1, health = bossHealth, scale = 2}, "boss", HandleOnBallDead);
                 _ballAlive.Add(boss.GetInstanceID());
                 return;
             }

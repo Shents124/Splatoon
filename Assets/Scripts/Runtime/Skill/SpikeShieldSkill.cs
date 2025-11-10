@@ -14,6 +14,7 @@ namespace Runtime.Skill
         public override void Apply(WeaponStat stats)
         {
             base.Apply(stats);
+            
             var msg = new SpawnSpikeShieldMessage()
             {
                 shield = stats.health.value * shieldPercent,

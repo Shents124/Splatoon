@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Runtime.Constant;
 using Runtime.Interface;
 using Runtime.Manager;
@@ -28,6 +29,7 @@ namespace Runtime.Ball
         private bool _isDead;
         private Action<BaseEnemy> _onDead;
         private string _key;
+        private Tweener _tweener;
         
         public virtual void Initialize(SpawnManager spawnManager, BallData ballData, string key, Action<BaseEnemy> onDead)
         {
@@ -64,8 +66,20 @@ namespace Runtime.Ball
             {
                 DeSpawn();
             }
+            else
+            {
+                DoScale();
+            }
         }
 
+        private void DoScale()
+        {
+            var scale = ballData.scale;
+            transform.localScale = new Vector3(scale, scale, scale);
+            _tweener?.Kill();
+            _tweener = transform.DOPunchScale(Vector3.one * 0.25f, 0.25f, 40);
+        }
+        
         private void UpdateHeath()
         {
             heathTxt.text = $"{(int)_currentHealth}";

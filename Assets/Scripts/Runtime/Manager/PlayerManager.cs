@@ -37,6 +37,7 @@ namespace Runtime.Manager
         private List<ISubscription> _subscriptions = new();
         private List<Drone> _drones = new();
 
+        public bool isUnder30 => _currentHeath / _maxHeath >= 0.3f;
         private void Awake()
         {
            WorldMessenger.Sub<AddShieldMessage>(msg =>
@@ -179,7 +180,7 @@ namespace Runtime.Manager
                 if (_currentHeath <= 0)
                 {
                     Time.timeScale = 0;
-                    UiService.OpenModalAsync(ModalType.ModalLose, closeWhenClickOnBackDrop:false).Forget();
+                    UiService.OpenModalAsync(ModalType.ModalLose, closeWhenClickOnBackDrop: false).Forget();
                 }
                 else if (_currentHeath / _maxHeath <= 0.3f)
                 {
