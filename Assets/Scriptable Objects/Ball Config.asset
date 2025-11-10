@@ -62,9 +62,15 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
-      Data: 5
+    - Name: bounce
+      Entry: 4
+      Data: 15
+    - Name: xVelocity
+      Entry: 4
+      Data: 3
+    - Name: weight
+      Entry: 4
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -98,9 +104,15 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
-      Data: 5
+    - Name: bounce
+      Entry: 4
+      Data: 17
+    - Name: xVelocity
+      Entry: 4
+      Data: 4
+    - Name: weight
+      Entry: 4
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -134,9 +146,15 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
-      Data: 10
+    - Name: bounce
+      Entry: 4
+      Data: 20
+    - Name: xVelocity
+      Entry: 4
+      Data: 5
+    - Name: weight
+      Entry: 4
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -170,9 +188,15 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
-      Data: 10
+    - Name: bounce
+      Entry: 4
+      Data: 22
+    - Name: xVelocity
+      Entry: 4
+      Data: 6
+    - Name: weight
+      Entry: 4
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -206,9 +230,15 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
-      Data: 15
+    - Name: bounce
+      Entry: 4
+      Data: 24
+    - Name: xVelocity
+      Entry: 4
+      Data: 7
+    - Name: weight
+      Entry: 4
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -262,8 +292,14 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
+    - Name: bounce
+      Entry: 4
+      Data: 0
+    - Name: xVelocity
+      Entry: 4
+      Data: 0
+    - Name: weight
+      Entry: 4
       Data: 0
     - Name: 
       Entry: 8
@@ -298,8 +334,14 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
+    - Name: bounce
+      Entry: 4
+      Data: 0
+    - Name: xVelocity
+      Entry: 4
+      Data: 0
+    - Name: weight
+      Entry: 4
       Data: 0
     - Name: 
       Entry: 8
@@ -334,8 +376,14 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
+    - Name: bounce
+      Entry: 4
+      Data: 0
+    - Name: xVelocity
+      Entry: 4
+      Data: 0
+    - Name: weight
+      Entry: 4
       Data: 0
     - Name: 
       Entry: 8
@@ -370,8 +418,14 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
+    - Name: bounce
+      Entry: 4
+      Data: 0
+    - Name: xVelocity
+      Entry: 4
+      Data: 0
+    - Name: weight
+      Entry: 4
       Data: 0
     - Name: 
       Entry: 8
@@ -406,8 +460,14 @@ MonoBehaviour:
     - Name: exp
       Entry: 3
       Data: 10
-    - Name: coin
-      Entry: 3
+    - Name: bounce
+      Entry: 4
+      Data: 0
+    - Name: xVelocity
+      Entry: 4
+      Data: 0
+    - Name: weight
+      Entry: 4
       Data: 0
     - Name: 
       Entry: 8

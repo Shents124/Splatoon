@@ -75,6 +75,9 @@ namespace Runtime.Manager
                 scale = ballConfigCsv.GetRandomScale(ballType),
                 sortOrder = _sortOder,
                 exp = !hasExp ? 0 : ballConfigCsv.exp,
+                bounceHeight = ballConfigCsv.bounce,
+                xVelocity = ballConfigCsv.xVelocity,
+                weight = ballConfigCsv.weight
             };
                 
             ball.Initialize(this, ballData, key, HandleOnBallDead);

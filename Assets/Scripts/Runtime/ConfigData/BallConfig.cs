@@ -31,7 +31,9 @@ namespace Runtime.ConfigData
         public int id;
         public Vector2 randomSize;
         public int exp;
-        public int coin;
+        public float bounce;
+        public float xVelocity;
+        public float weight;
 
         public float GetRandomScale(BallType ballType)
         {

@@ -143,6 +143,7 @@ namespace BallBlast
             UpdateBallForceForTheDirection(hitBorderDirection, ref m_BallForce);
 
             ApplyForce(m_BallForce);
+            Debug.Log("onTriggerEnter");
         }
 
         protected void ApplyForce(Vector2 inForce)
