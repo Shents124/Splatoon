@@ -77,7 +77,7 @@ namespace Runtime.Ball
             var scale = ballData.scale;
             transform.localScale = new Vector3(scale, scale, scale);
             _tweener?.Kill();
-            _tweener = transform.DOPunchScale(Vector3.one * 0.25f, 0.25f, 40);
+            _tweener = transform.DOPunchScale(Vector3.one * 0.2f, 0.3f, 40);
         }
         
         private void UpdateHeath()

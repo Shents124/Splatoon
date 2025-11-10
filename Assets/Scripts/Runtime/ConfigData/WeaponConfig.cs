@@ -19,5 +19,6 @@ namespace Runtime.ConfigData
         public float bulletLifeTime;
         public float bulletRange;
         public float knockback;
+        public Sprite sprite;
     }
 }

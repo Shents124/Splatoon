@@ -19,6 +19,8 @@ namespace Runtime.Manager
 {
     public class PlayerManager : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer gunSprite;
+        [SerializeField] private Sprite[] sprites;
         [SerializeField] private List<Transform> droneContainers;
         [SerializeField] private PlayerStatUI statUI;
         [SerializeField] private Camera mainCamera;
@@ -66,7 +68,7 @@ namespace Runtime.Manager
             TouchSimulation.Disable();
         }
 
-        public void Initialize(WeaponStat weaponStat)
+        public void Initialize(WeaponStat weaponStat, WeaponType weaponType)
         {
             _maxHeath = weaponStat.health.value;
             _currentHeath = _maxHeath;
@@ -77,6 +79,7 @@ namespace Runtime.Manager
             _uiInputModule = FindFirstObjectByType<InputSystemUIInputModule>();
 
             weaponStat.health.onValueChange += HandleValueChange;
+            gunSprite.sprite = weaponType == WeaponType.Riffe ? sprites[0] : sprites[1];
         }
 
         private void HandleValueChange(float obj)

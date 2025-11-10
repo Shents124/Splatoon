@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using Runtime.ConfigData;
+using Runtime.Constant;
 using Runtime.Pool;
 using Runtime.Stat;
 using Runtime.UI;
@@ -33,7 +34,7 @@ namespace Runtime.Manager
             var weaponStat = new WeaponStat();
             weaponManager.Initialize(weaponStat, weaponConfig);
             buffManager.SetWeaponStat(weaponStat);
-            playerManager.Initialize(weaponStat);
+            playerManager.Initialize(weaponStat, weaponConfig.weaponType);
             await spawnManager.Initialize();
         }
     }

@@ -17,6 +17,7 @@ namespace Runtime.UI
         public TextMeshProUGUI fireRate;
         public TextMeshProUGUI bulletPerShot;
         public TextMeshProUGUI bulletRange;
+        public Image image;
 
         public Button onClickedButton;
         private Action<WeaponConfig> _onSelected;
@@ -31,7 +32,7 @@ namespace Runtime.UI
             fireRate.text = $"Fire Rate: {weaponConfig.fireRate}";
             bulletPerShot.text = $"Bullet per shot: {weaponConfig.bulletPerShot}";
             bulletRange.text = $"Bullet Range: {weaponConfig.bulletRange}";
-            
+            image.sprite = weaponConfig.sprite;
             onClickedButton.onClick.AddListener(OnClick);
         }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Riffe Weapon Config
   m_EditorClassIdentifier: 
   id: 101
-  weaponName: Riffe
+  weaponName: Riffle
   weaponType: 0
   attack: 10
   dmg: 1
@@ -25,3 +25,4 @@ MonoBehaviour:
   bulletLifeTime: 5
   bulletRange: 50
   knockback: 100
+  sprite: {fileID: 21300000, guid: 6daa3f6a352f79145aefc2d43a4c5f9b, type: 3}
