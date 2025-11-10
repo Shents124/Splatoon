@@ -26,5 +26,5 @@ MonoBehaviour:
     - rid: 6259183431657980016
       type: {class: ShredderBullet, ns: Runtime.Skill, asm: Assembly-CSharp}
       data:
-        rate: 0.5
+        rate: 0.7
         attackPercent: 0.2

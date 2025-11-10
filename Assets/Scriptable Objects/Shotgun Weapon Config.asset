@@ -16,7 +16,7 @@ MonoBehaviour:
   weaponName: Shotgun
   weaponType: 1
   attack: 10
-  dmg: 0.5
+  dmg: 0.7
   critRate: 0
   critDamage: 1.2
   fireRate: 3
