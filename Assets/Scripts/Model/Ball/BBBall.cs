@@ -6,6 +6,7 @@ using DG.Tweening.Core;
 using Game.Common;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace BallBlast
 {
@@ -50,7 +51,7 @@ namespace BallBlast
             UpdateCountText(0);
 
             Vector3 rotation = Vector3.one;
-            rotation.z = 360f;
+            rotation.z = Random.Range(200, 360f);
             float rotationDur = 3f;
 
             m_RotationTween = transform.DORotate(rotation, rotationDur, RotateMode.LocalAxisAdd)

@@ -6,6 +6,7 @@ using Game.Common;
 using Runtime.Constant;
 using Runtime.Manager;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Runtime.Ball
 {
@@ -44,7 +45,7 @@ namespace Runtime.Ball
             
             _mRotationTween?.Kill();
             Vector3 rotation = Vector3.one;
-            rotation.z = 360f;
+            rotation.z = Random.Range(200, 360f);
             float rotationDur = 3f;
             _mRotationTween = transform.DORotate(rotation, rotationDur, RotateMode.LocalAxisAdd)
                 .SetLoops(-1)
@@ -120,8 +121,6 @@ namespace Runtime.Ball
 
                     if (_isBallBouncingTowardsRight)
                         outForce.x = xVelocity;// To Left
-                    
-                    Debug.Log("Add force");
                 }
             }
             

@@ -139,13 +139,15 @@ namespace Runtime.Manager
             if (heath <= 0)
                 heath = 1;
             
+            var ballConfigCsv = ballConfig.GetBallConfig(ballId, baseBall.ballType);
+            
             for (int i = 0; i < 2; i++)
             {
                 float t = (float)i / 1; // 0 → 1
                 float offset = Mathf.Lerp(-half, half, t);
                 float rad = (baseAngle + offset) * Mathf.Deg2Rad;
                 Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
-                var force = dir * Random.Range(randomForce.x, randomForce.y) * 2;
+                var force = dir * Random.Range(randomForce.x, randomForce.y) * ballConfigCsv.weight * 2;
                 
                 SpawnBall(baseBall.ballType, newBallId, attack, heath, spawnPosition, force);
             }
