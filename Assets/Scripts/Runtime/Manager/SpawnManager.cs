@@ -181,7 +181,7 @@ namespace Runtime.Manager
                 Vector2 dir = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
                 var force = dir * (Random.Range(randomForce.x, randomForce.y) * 2);
                 
-                SpawnBall(BallType.Normal, ballId, 10, 100, spawnPosition, force, false);
+                SpawnBall(BallType.Normal, ballId, 10, 50, spawnPosition, force, false);
             }
         }
         
