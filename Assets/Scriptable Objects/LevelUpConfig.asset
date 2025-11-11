@@ -26,7 +26,7 @@ MonoBehaviour:
   - expRequired: 120
     raritySpawnType: 0
   - expRequired: 150
-    raritySpawnType: 1
+    raritySpawnType: 2
   - expRequired: 200
     raritySpawnType: 0
   - expRequired: 200
