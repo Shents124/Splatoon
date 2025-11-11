@@ -52,7 +52,7 @@ MonoBehaviour:
   bulletLifeTime: 5
   bulletSpeed: 5
   damage: 10
-  fireRate: 4
+  fireRate: 3
   firePoints:
   - {fileID: 7295216731741909869}
   - {fileID: 363234809678008053}

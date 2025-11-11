@@ -189,7 +189,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Choi hay lam
 
-    Chung mung'
+    Chuc mung'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 93a15c712541ffe45bcbd2194f36faf4, type: 2}
   m_sharedMaterial: {fileID: 1561107206971857239, guid: 93a15c712541ffe45bcbd2194f36faf4, type: 2}

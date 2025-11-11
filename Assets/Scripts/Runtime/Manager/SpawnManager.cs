@@ -47,7 +47,7 @@ namespace Runtime.Manager
         private async UniTask SpawnWave()
         {
             _ballAlive.Clear();
-
+            
             if (_currentWave == 9)
             {
                 var boss = PoolService.Spawn<Boss>(PoolType.Ball, "boss");
@@ -109,27 +109,30 @@ namespace Runtime.Manager
             if (_ballAlive.Remove(baseBall.GetInstanceID()) == false)
                 return;
 
-            var exp = baseBall.ballData.exp;
-            _currentExp += exp;
-            if (_currentExp >= _expRequired)
+            if (_currentLevel < levelUpConfig.maxLevel)
             {
-                _currentLevel++;
-                if (_currentLevel >= levelUpConfig.maxLevel)
+                var exp = baseBall.ballData.exp;
+                _currentExp += exp;
+                if (_currentExp >= _expRequired)
                 {
-                    levelUI.UpdateData(_currentLevel, 1, true);
+                    _currentLevel++;
+                    if (_currentLevel >= levelUpConfig.maxLevel)
+                    {
+                        levelUI.UpdateData(_currentLevel, 1, true);
+                    }
+                    else
+                    {
+                        _currentExp -= _expRequired;
+                        _expRequired = levelUpConfig.ExpRequired(_currentLevel);
+                        levelUI.UpdateData(_currentLevel, (float)_currentExp / _expRequired);
+                    }
+                
+                    buffManager.ShowSelectBuff(levelUpConfig.BuffRarity(_currentLevel - 1));
                 }
                 else
                 {
-                    _currentExp -= _expRequired;
-                    _expRequired = levelUpConfig.ExpRequired(_currentLevel);
                     levelUI.UpdateData(_currentLevel, (float)_currentExp / _expRequired);
                 }
-                
-                buffManager.ShowSelectBuff(levelUpConfig.BuffRarity(_currentLevel - 1));
-            }
-            else
-            {
-                levelUI.UpdateData(_currentLevel, (float)_currentExp / _expRequired);
             }
             
             var ballId = baseBall.ballId;
