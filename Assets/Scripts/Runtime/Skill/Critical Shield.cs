@@ -32,7 +32,13 @@ namespace Runtime.Skill
                 }
             }
             
-            WorldMessenger.Sub<HealthUnder30>(Handle);
+            subscription = WorldMessenger.Sub<HealthUnder30>(Handle);
+        }
+
+        public override void Remove(WeaponStat stats)
+        {
+            base.Remove(stats);
+            subscription?.Unsubscribe();
         }
 
         private void Handle()

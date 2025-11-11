@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using Runtime.Constant;
@@ -18,6 +19,14 @@ namespace Runtime.Manager
         private List<BaseBuff> _buffs = new();
 
         private WeaponStat _weaponStat;
+
+        private void OnDestroy()
+        {
+            foreach (var baseBuff in _buffs)
+            {
+                baseBuff.CleanUp();
+            }
+        }
 
         public void SetWeaponStat(WeaponStat weaponStat)
         {

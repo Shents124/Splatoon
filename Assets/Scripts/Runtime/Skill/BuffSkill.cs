@@ -25,5 +25,11 @@ namespace Runtime.Skill
             baseSkill.Remove(stats);
             base.Remove(stats);
         }
+
+        public override void CleanUp()
+        {
+            baseSkill.CleanUp();
+            base.CleanUp();
+        }
     }
 }

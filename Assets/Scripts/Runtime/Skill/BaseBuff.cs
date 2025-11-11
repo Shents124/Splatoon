@@ -27,6 +27,11 @@ namespace Runtime.Skill
 
         public virtual void UpdateBuff(WeaponStat stats) { }
 
+        public virtual void CleanUp()
+        {
+            
+        }
+        
         public bool Equals(BaseBuff other)
         {
             if (other is null) return false;

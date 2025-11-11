@@ -24,5 +24,10 @@ namespace Runtime.Skill
         {
             
         }
+
+        public void CleanUp()
+        {
+            subscription?.Unsubscribe();
+        }
     }
 }
