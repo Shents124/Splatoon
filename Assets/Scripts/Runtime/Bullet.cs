@@ -42,6 +42,12 @@ namespace Runtime
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (CanBounce() == false)
+            {
+                DeSpawn();
+                return;
+            }
+            
             if (other.gameObject.CompareTag("LeftWall"))
             {
                 var incoming = rigid2D.linearVelocity.normalized;
@@ -84,7 +90,7 @@ namespace Runtime
             }
             else
             {
-                Despawn();
+                DeSpawn();
             }
         }
 
