@@ -133,6 +133,8 @@ namespace Runtime.Manager
 
         bool IsPointerOverUI(int touchId)
         {
+            if (_uiInputModule == null)
+                return true;
             return _uiInputModule.IsPointerOverGameObject(touchId);
         }
 

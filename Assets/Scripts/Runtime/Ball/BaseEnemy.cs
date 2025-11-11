@@ -45,7 +45,12 @@ namespace Runtime.Ball
             sortingGroup.sortingOrder = ballData.sortOrder;
             UpdateHeath();
         }
-        
+
+        private void OnDestroy()
+        {
+            _tweener?.Kill();
+        }
+
         protected virtual void OnTriggerEnter2D(Collider2D other)
         {
             if (other == null)

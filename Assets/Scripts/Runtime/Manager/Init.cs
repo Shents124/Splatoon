@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Runtime.Service;
 using UnityEngine;
 
@@ -7,7 +8,9 @@ namespace Runtime.Manager
     {
         private void Start()
         {
-            Helper.LoadScene();
+            Application.targetFrameRate = 60;
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
+            Helper.LoadScene().Forget();
         }
     }
 }

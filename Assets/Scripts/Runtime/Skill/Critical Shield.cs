@@ -3,7 +3,6 @@ using Runtime.Manager;
 using Runtime.PubSub;
 using Runtime.PubSub.CommonMessage;
 using Runtime.Stat;
-using UnityEngine;
 using Object = UnityEngine.Object;
 
 namespace Runtime.Skill
@@ -22,6 +21,8 @@ namespace Runtime.Skill
 
         public override void Apply(WeaponStat stats)
         {
+            base.Apply(stats);
+            
             var player = Object.FindFirstObjectByType<PlayerManager>();
             if (player != null)
             {
@@ -32,8 +33,6 @@ namespace Runtime.Skill
             }
             
             WorldMessenger.Sub<HealthUnder30>(Handle);
-            
-            base.Apply(stats);
         }
 
         private void Handle()
