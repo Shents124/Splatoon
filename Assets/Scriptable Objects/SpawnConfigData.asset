@@ -258,7 +258,7 @@ MonoBehaviour:
       Data: 0
     - Name: heath
       Entry: 4
-      Data: 400
+      Data: 200
     - Name: attack
       Entry: 4
       Data: 10
