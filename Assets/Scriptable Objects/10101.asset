@@ -20,5 +20,5 @@ MonoBehaviour:
   rarity: 0
   buffs:
   - statType: 8
-    value: 0.05
+    value: 0.1
     modifierType: 1
